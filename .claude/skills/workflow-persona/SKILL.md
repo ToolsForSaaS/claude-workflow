@@ -1,6 +1,6 @@
 ---
-name: shared
-description: Persona et posture commune à toutes les commandes du workflow (plan, issue, code, pr).
+name: workflow-persona
+description: Persona et posture commune a tous les skills du workflow (prepare-plan, create-issue, code, commit, create-pr). Charge automatiquement quand un skill workflow est actif.
 user-invocable: false
 ---
 

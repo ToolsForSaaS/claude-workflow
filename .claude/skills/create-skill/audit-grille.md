@@ -1,8 +1,6 @@
----
-name: audit
-description: Grille d'evaluation AI-Driven Development. Criteres de scoring, bonnes pratiques et anti-patterns pour auditer commandes, skills, CLAUDE.md et workflow Claude Code.
-user-invocable: false
----
+# Grille d'audit AI-Driven Development
+
+Criteres de scoring, bonnes pratiques et anti-patterns pour auditer skills, CLAUDE.md et workflow Claude Code.
 
 ## Ce que tu evalues
 

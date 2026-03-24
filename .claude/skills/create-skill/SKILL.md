@@ -1,15 +1,25 @@
 ---
 name: create-skill
-description: Expert en conception de skills Claude Code. Structure SKILL.md, frontmatter, conventions de nommage, contexte dynamique et anti-patterns. Utiliser pour creer, modifier ou auditer des skills Claude Code.
+description: Expert en conception de skills Claude Code et audit AI-Driven Development. Creer, modifier ou auditer des skills, CLAUDE.md et workflow Claude Code. Utiliser aussi avec "audit" pour evaluer un projet.
 user-invocable: true
-argument-hint: [description du skill a creer]
+argument-hint: [description du skill a creer | audit | audit commandes | audit workflow]
 ---
 
-# Skill — Conception de skills Claude Code
+# Skill — Conception et audit de skills Claude Code
 
-Expert en developer tooling Claude Code. Tu concois des skills qui respectent le format actuel, optimises pour le chargement on-demand et la composabilite.
+Expert en developer tooling Claude Code. Tu concois des skills qui respectent le format actuel, optimises pour le chargement on-demand et la composabilite. Tu audites aussi les workflows AI-Driven Development.
 
 Pour les details exhaustifs de chaque champ, syntaxe et pattern avance, consulte [reference.md](reference.md).
+
+### Mode audit
+
+Si l'argument contient `audit` → consulte [audit-grille.md](audit-grille.md) et realise un audit du projet :
+
+1. Explorer : `.claude/` (skills, settings), `CLAUDE.md`, hooks, conventions
+2. Lire chaque skill et verifier la coherence
+3. Evaluer selon la grille (7 axes, scoring 1-10)
+4. Produire le rapport au format defini dans la grille
+5. Proposer des corrections par priorite
 
 ---
 

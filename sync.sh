@@ -1,45 +1,33 @@
 #!/bin/bash
-# sync.sh — Synchronise les fichiers Claude partagés dans un projet
+# sync.sh — Synchronise les skills Claude partages dans un projet
 #
 # Usage :
-#   ./sync.sh                    # sync dans le répertoire courant
-#   ./sync.sh /path/to/project   # sync dans un projet spécifique
+#   ./sync.sh                    # sync dans le repertoire courant
+#   ./sync.sh /path/to/project   # sync dans un projet specifique
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 TARGET="${1:-.}"
 TARGET_CLAUDE="$TARGET/.claude"
 
-# Créer les dossiers si nécessaire
-mkdir -p "$TARGET_CLAUDE/commands" "$TARGET_CLAUDE/skills"
+# Creer le dossier si necessaire
+mkdir -p "$TARGET_CLAUDE/skills"
 
 changed=0
 
-# Sync des commandes partagées (récursif)
-while IFS= read -r -d '' file; do
-  rel="${file#"$SCRIPT_DIR/.claude/commands/"}"
-  target_file="$TARGET_CLAUDE/commands/$rel"
-  mkdir -p "$(dirname "$target_file")"
-  if ! cmp -s "$file" "$target_file" 2>/dev/null; then
-    cp "$file" "$target_file"
-    echo "  ↳ commands/$rel"
-    changed=$((changed + 1))
-  fi
-done < <(find "$SCRIPT_DIR/.claude/commands" -name '*.md' -print0)
-
-# Sync des skills partagés (récursif)
+# Sync des skills partages (recursif)
 while IFS= read -r -d '' file; do
   rel="${file#"$SCRIPT_DIR/.claude/skills/"}"
   target_file="$TARGET_CLAUDE/skills/$rel"
   mkdir -p "$(dirname "$target_file")"
   if ! cmp -s "$file" "$target_file" 2>/dev/null; then
     cp "$file" "$target_file"
-    echo "  ↳ skills/$rel"
+    echo "  skills/$rel"
     changed=$((changed + 1))
   fi
 done < <(find "$SCRIPT_DIR/.claude/skills" -name '*.md' -print0)
 
-# Créer les fichiers projet-specific s'ils n'existent pas encore
+# Creer les fichiers projet-specific s'ils n'existent pas encore
 # Templates fichiers plats (ex: templates/foo.md → skills/foo.md)
 for file in "$SCRIPT_DIR/templates/"*.md; do
   [ -f "$file" ] || continue
@@ -48,18 +36,18 @@ for file in "$SCRIPT_DIR/templates/"*.md; do
   [ "$filename" = "CLAUDE-skills-index.md" ] && continue
   if [ ! -f "$TARGET_CLAUDE/skills/$filename" ]; then
     cp "$file" "$TARGET_CLAUDE/skills/$filename"
-    echo "  ↳ skills/$filename (template, à personnaliser)"
+    echo "  skills/$filename (template)"
     changed=$((changed + 1))
   fi
 done
-# Templates répertoires (ex: templates/foo/SKILL.md → skills/foo/SKILL.md)
+# Templates repertoires (ex: templates/foo/SKILL.md → skills/foo/SKILL.md)
 for dir in "$SCRIPT_DIR/templates/"*/; do
   [ -d "$dir" ] || continue
   dirname="$(basename "$dir")"
   target_dir="$TARGET_CLAUDE/skills/$dirname"
   if [ ! -d "$target_dir" ]; then
     cp -r "$dir" "$target_dir"
-    echo "  ↳ skills/$dirname/ (template, à personnaliser)"
+    echo "  skills/$dirname/ (template)"
     changed=$((changed + 1))
   fi
 done
@@ -69,21 +57,20 @@ SKILLS_INDEX="$SCRIPT_DIR/templates/CLAUDE-skills-index.md"
 TARGET_CLAUDE_MD="$TARGET/CLAUDE.md"
 if [ -f "$SKILLS_INDEX" ]; then
   if [ ! -f "$TARGET_CLAUDE_MD" ]; then
-    # CLAUDE.md n'existe pas → le créer avec un header minimal + index
+    # CLAUDE.md n'existe pas → le creer avec un header minimal + index
     project_name="$(basename "$(cd "$TARGET" && pwd)")"
     printf '# %s\n\n' "$project_name" > "$TARGET_CLAUDE_MD"
     cat "$SKILLS_INDEX" >> "$TARGET_CLAUDE_MD"
-    echo "  ↳ CLAUDE.md (créé avec index des skills)"
+    echo "  CLAUDE.md (cree avec index des skills)"
     changed=$((changed + 1))
   elif ! grep -q "## Skills disponibles" "$TARGET_CLAUDE_MD" 2>/dev/null; then
-    # CLAUDE.md existe mais pas de section skills → l'ajouter à la fin
+    # CLAUDE.md existe mais pas de section skills → l'ajouter a la fin
     printf '\n' >> "$TARGET_CLAUDE_MD"
     cat "$SKILLS_INDEX" >> "$TARGET_CLAUDE_MD"
-    echo "  ↳ CLAUDE.md (ajout index des skills)"
+    echo "  CLAUDE.md (ajout index des skills)"
     changed=$((changed + 1))
   else
-    # CLAUDE.md existe et contient la section → vérifier si tous les skills sont présents
-    # Extraire les chemins de skills du template et vérifier chacun
+    # CLAUDE.md existe et contient la section → verifier si tous les skills sont presents
     missing=0
     while IFS= read -r skill_path; do
       if ! grep -qF "$skill_path" "$TARGET_CLAUDE_MD" 2>/dev/null; then
@@ -105,14 +92,14 @@ if [ -f "$SKILLS_INDEX" ]; then
       printf '\n\n' >> "$TARGET_CLAUDE_MD.tmp"
       cat "$SKILLS_INDEX" >> "$TARGET_CLAUDE_MD.tmp"
       mv "$TARGET_CLAUDE_MD.tmp" "$TARGET_CLAUDE_MD"
-      echo "  ↳ CLAUDE.md (mise à jour index des skills — $missing skill(s) ajouté(s))"
+      echo "  CLAUDE.md (mise a jour index — $missing skill(s) ajoute(s))"
       changed=$((changed + 1))
     fi
   fi
 fi
 
 if [ "$changed" -eq 0 ]; then
-  echo "  Déjà à jour."
+  echo "  Deja a jour."
 else
-  echo "  $changed fichier(s) mis à jour."
+  echo "  $changed fichier(s) mis a jour."
 fi

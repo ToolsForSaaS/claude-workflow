@@ -1,45 +1,39 @@
 # claude-workflow
 
-Repo central de commandes et skills Claude Code, synchronisés vers tous les projets via `sync.sh`.
+Repo central de skills Claude Code, synchronises vers tous les projets via `sync.sh`.
 
-## Règles
+## Regles
 
-- Les fichiers dans `.claude/commands/` et `.claude/skills/` sont **partagés** — ils sont copiés tels quels dans le `.claude/` de chaque projet
-- Les fichiers dans `templates/` sont des squelettes pour les fichiers **projet-specific** — ils ne sont copiés que si le fichier n'existe pas encore dans le projet cible
-- Ne jamais mettre de logique spécifique à un projet (stack, architecture) dans les fichiers partagés — ça va dans les templates
-- Les chemins dans les commandes utilisent `.claude/skills/...` (chemin identique dans ce repo et dans les projets cibles)
+- Les fichiers dans `.claude/skills/` sont **partages** — ils sont copies tels quels dans le `.claude/` de chaque projet
+- Les fichiers dans `templates/` sont des squelettes pour les fichiers **projet-specific** — ils ne sont copies que si le repertoire n'existe pas encore dans le projet cible
+- Ne jamais mettre de logique specifique a un projet (stack, architecture) dans les skills partages — ca va dans les templates
+- Chaque skill est un repertoire `nom/SKILL.md` avec frontmatter obligatoire
 
 ## Structure
 
 ```
-.claude/commands/          → copiés dans .claude/commands/ de chaque projet
-.claude/skills/nom/SKILL.md → copiés dans .claude/skills/ de chaque projet
-templates/nom/SKILL.md     → copiés dans .claude/skills/ uniquement si le répertoire n'existe pas
+.claude/skills/nom/SKILL.md   → copies dans .claude/skills/ de chaque projet
+templates/nom/SKILL.md        → copies dans .claude/skills/ uniquement si le repertoire n'existe pas
 ```
 
 ## Scripts
 
-- `sync.sh [path]` — synchronise un projet (défaut: répertoire courant)
-- `sync-all.sh` — synchronise tous les projets listés dans `projects.conf`
+- `sync.sh [path]` — synchronise un projet (defaut: repertoire courant)
+- `sync-all.sh` — synchronise tous les projets listes dans `projects.conf`
 
 ## Conventions
 
-- Nommage : `kebab-case`, chaque skill est un répertoire `nom/SKILL.md`
-- Commandes : orchestration (flux, étapes, outils) — pas de savoir métier
-- Skills : expertise (règles, critères, formats) — pas de logique d'exécution
-- Un skill est référencé dans une commande via `Lis .claude/skills/nom/SKILL.md`
-- `$ARGUMENTS` toujours en fin de commande
+- Nommage : `kebab-case`, chaque skill est un repertoire `nom/SKILL.md`
+- Skills invocables : workflow/action avec `user-invocable: true`
+- Skills expertise : conventions/regles avec `user-invocable: false`
+- `$ARGUMENTS` toujours en fin de skill invocable
 
 ## Skills disponibles
 
-Quand un sujet est abordé en conversation (hors commande slash), lis le skill correspondant **avant** de répondre :
+Quand un sujet est aborde en conversation (hors commande slash), lis le skill correspondant **avant** de repondre :
 
-| Sujet | Skill à lire |
+| Sujet | Skill a lire |
 |-------|-------------|
-| Branches git | `.claude/skills/branch-convention/SKILL.md` |
-| Messages de commit | `.claude/skills/commit-convention/SKILL.md` |
-| Pull requests | `.claude/skills/pr-convention/SKILL.md` |
-| Labels GitHub | `.claude/skills/labels-catalog/SKILL.md` |
+| Branches, commits, PRs | `.claude/skills/git-conventions/SKILL.md` |
 | Code, conventions, stack | `.claude/skills/code-conventions/SKILL.md` |
-| Lint, format, DX | `.claude/skills/lint-expertise/SKILL.md` |
-| Créer des skills | `.claude/skills/create-skill/SKILL.md` |
+| Creer des skills, audit | `.claude/skills/create-skill/SKILL.md` |

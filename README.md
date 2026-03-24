@@ -1,23 +1,32 @@
 # claude-workflow
 
-Repo central qui contient les commandes et skills Claude Code partagés entre tous mes projets.
+Repo central qui contient les skills Claude Code partages entre tous mes projets.
 
-Au lieu de dupliquer `.claude/commands/` et `.claude/skills/` dans chaque projet, tout est versionné ici et synchronisé via un script.
+Au lieu de dupliquer `.claude/skills/` dans chaque projet, tout est versionne ici et synchronise via un script.
 
 ## Structure
 
 ```
 claude-workflow/
   .claude/
-    commands/                    # Commandes slash (/plan, /code, /pr, /issue, /github-labels, /lint-setup)
     skills/
-      nom/SKILL.md              # Skills partagés (shared, commit-convention, branch-convention, etc.)
+      code/SKILL.md               # /code — implementation
+      commit/SKILL.md             # /commit — commit formate
+      create-issue/SKILL.md       # /create-issue — issues GitHub
+      create-pr/SKILL.md          # /create-pr — Pull Requests
+      create-skill/SKILL.md       # /create-skill — creation + audit skills
+      git-conventions/SKILL.md    # conventions branches/commits/PRs
+      init/SKILL.md               # /init — generer CLAUDE.md
+      lint-audit/SKILL.md         # /lint-audit — audit lint/format
+      prepare-plan/SKILL.md       # /prepare-plan — planification
+      templates/SKILL.md          # /templates — remplir les templates
+      workflow-persona/SKILL.md   # persona commune aux skills workflow
   templates/
-    nom/SKILL.md                # Squelettes pour les skills projet-specific (code-conventions)
-    CLAUDE-skills-index.md      # Index injecté dans le CLAUDE.md des projets
-  sync.sh                       # Synchronise un projet
-  sync-all.sh                   # Synchronise tous les projets de projects.conf
-  projects.conf                 # Liste des projets à synchroniser
+    code-conventions/SKILL.md     # squelette conventions projet-specific
+    CLAUDE-skills-index.md        # index injecte dans le CLAUDE.md des projets
+  sync.sh                         # synchronise un projet
+  sync-all.sh                     # synchronise tous les projets de projects.conf
+  projects.conf                   # liste des projets a synchroniser
 ```
 
 ## Utilisation
@@ -25,7 +34,7 @@ claude-workflow/
 ### Synchroniser un projet
 
 ```bash
-# Depuis n'importe où, en passant le chemin du projet
+# Depuis n'importe ou, en passant le chemin du projet
 ./sync.sh /path/to/mon-projet
 
 # Depuis la racine d'un projet
@@ -33,10 +42,10 @@ claude-workflow/
 ```
 
 Le script :
-- Crée `.claude/commands/` et `.claude/skills/` si nécessaire
-- Copie les commandes et skills partagés (écrase les anciens)
-- Génère les fichiers templates (ex: `code-conventions.md`) **uniquement s'ils n'existent pas encore**
-- Affiche les fichiers mis à jour, ou "Déjà à jour" si rien n'a changé
+- Cree `.claude/skills/` si necessaire
+- Copie les skills partages (ecrase les anciens)
+- Genere les templates **uniquement s'ils n'existent pas encore**
+- Affiche les fichiers mis a jour, ou "Deja a jour" si rien n'a change
 
 ### Synchroniser tous les projets d'un coup
 
@@ -44,7 +53,7 @@ Le script :
 ./sync-all.sh
 ```
 
-Lit `projects.conf` et lance `sync.sh` sur chaque projet listé.
+Lit `projects.conf` et lance `sync.sh` sur chaque projet liste.
 
 ### Ajouter un nouveau projet
 
@@ -52,16 +61,16 @@ Lit `projects.conf` et lance `sync.sh` sur chaque projet listé.
 2. Lancer `./sync-all.sh`
 3. Personnaliser `.claude/skills/code-conventions/SKILL.md` dans le projet (stack, architecture, nommage)
 
-## Fichiers partagés vs projet-specific
+## Fichiers partages vs projet-specific
 
-| Type | Où | Exemples | Sync |
+| Type | Ou | Exemples | Sync |
 |------|----|----------|------|
-| **Partagé** | `claude-workflow/.claude/commands/` et `.claude/skills/` | plan, code, pr, commit-convention, branch-convention | Ecrasé à chaque sync |
-| **Projet-specific** | `.claude/skills/` du projet | code-conventions/SKILL.md | Jamais écrasé (créé une seule fois depuis le template) |
+| **Partage** | `claude-workflow/.claude/skills/` | code, commit, create-pr, git-conventions | Ecrase a chaque sync |
+| **Projet-specific** | `.claude/skills/` du projet | code-conventions/SKILL.md | Jamais ecrase (cree une seule fois depuis le template) |
 
-## Workflow de mise à jour
+## Workflow de mise a jour
 
-1. Modifier le fichier dans `claude-workflow/.claude/`
+1. Modifier le skill dans `claude-workflow/.claude/skills/`
 2. Commit + push
-3. `./sync-all.sh` pour propager à tous les projets
-4. Commit les fichiers mis à jour dans chaque projet
+3. `./sync-all.sh` pour propager a tous les projets
+4. Commit les fichiers mis a jour dans chaque projet
