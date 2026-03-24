@@ -1,14 +1,10 @@
-Commence par lire ces fichiers dans l'ordre :
-
-1. `.claude/skills/shared.md`
-2. `.claude/skills/pr-convention.md`
-3. `.claude/skills/code-conventions.md`
+Commence par lire `.claude/skills/shared.md`.
 
 ---
 
 ## Étape 0 — Vérifications
 
-Avant de commencer, vérifie :
+Lis `.claude/skills/code-conventions.md` puis vérifie :
 
 - [ ] Le repo a un remote `origin` configuré
 - [ ] La branche courante n'est pas la branche par défaut (on ne crée pas de PR depuis main/develop)
@@ -29,6 +25,8 @@ Rassemble les informations nécessaires :
 Vérifie via MCP GitHub si une PR ouverte existe déjà sur la branche courante. Le résultat détermine si on crée une nouvelle PR ou si on met à jour l'existante.
 
 ## Étape 3 — Rédiger la description
+
+Lis `.claude/skills/pr-convention.md` puis rédige la description.
 
 Que ce soit pour une nouvelle PR ou une mise à jour, la description suit le format défini dans le skill `pr-convention` et doit toujours refléter l'état actuel complet de la PR — jamais de mention "ajouté", "mis à jour" ou "nouveau". C'est le rôle du commentaire d'itération (étape 4).
 

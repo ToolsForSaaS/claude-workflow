@@ -1,8 +1,4 @@
-Commence par lire ces fichiers dans l'ordre :
-
-1. `.claude/skills/shared.md`
-2. `.claude/skills/lint-expertise.md`
-3. `.claude/skills/code-conventions.md`
+Commence par lire `.claude/skills/shared.md`.
 
 ---
 
@@ -23,7 +19,7 @@ Focus sur un aspect spécifique. Arguments possibles :
 
 ## Étape 1 — Explorer les configs existantes
 
-Scanne le projet pour identifier toutes les configurations lint/format en place :
+Lis `.claude/skills/code-conventions.md` pour comprendre la stack du projet, puis scanne pour identifier toutes les configurations lint/format en place :
 
 - `biome.json` / `biome.jsonc` (racine et workspaces)
 - `eslint.config.mjs` / `.eslintrc.*` (racine et workspaces)
@@ -38,7 +34,7 @@ Lis chaque fichier trouvé pour comprendre la configuration actuelle.
 
 ## Étape 2 — Analyser
 
-Évalue chaque axe défini dans le skill `lint-expertise` :
+Lis `.claude/skills/lint-expertise.md` puis évalue chaque axe :
 
 1. Choix des outils — sont-ils optimaux ?
 2. Performance — temps de lint, cache activé ?

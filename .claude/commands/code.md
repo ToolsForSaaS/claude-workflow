@@ -1,9 +1,4 @@
-Commence par lire ces fichiers dans l'ordre :
-
-1. `.claude/skills/shared.md`
-2. `.claude/skills/branch-convention.md`
-3. `.claude/skills/code-conventions.md`
-4. `.claude/skills/commit-convention.md`
+Commence par lire `.claude/skills/shared.md`.
 
 ---
 
@@ -19,7 +14,7 @@ Récupère l'issue via MCP GitHub (ID, URL ou titre) et lance `/plan` avant de c
 
 ## Étape 0 — Vérifications
 
-Avant de commencer, vérifie :
+Lis `.claude/skills/code-conventions.md` puis vérifie :
 
 - [ ] Le repo a un remote `origin` configuré
 - [ ] Le working tree est propre (pas de changements non commités qui bloqueraient un checkout)
@@ -29,21 +24,21 @@ Si une vérification échoue, signale-le clairement et arrête-toi. Ne tente pas
 
 ## Étape 1 — Créer la branche
 
-Avant tout code, crée une branche depuis la **branche par défaut** définie dans `code-conventions` (section Git) en suivant la convention définie dans le skill `branch-convention`.
+Lis `.claude/skills/branch-convention.md` puis crée une branche depuis la **branche par défaut** définie dans `code-conventions` (section Git) en suivant la convention.
 
 Annonce la branche créée avant de commencer.
 
 ## Étape 2 — Implémenter
 
-Suis les étapes du plan dans l'ordre. Pour chaque étape :
+Lis `.claude/skills/commit-convention.md` puis suis les étapes du plan dans l'ordre. Pour chaque étape :
 
 ### Règles de code
 
-Respecte les conventions définies dans le skill `code-conventions`.
+Respecte les conventions définies dans le skill `code-conventions` (déjà lu).
 
 ### Convention de commit
 
-Chaque étape du plan terminée = un commit. Respecte le format défini dans le skill `commit-convention`.
+Chaque étape du plan terminée = un commit. Respecte le format défini dans le skill `commit-convention` (déjà lu).
 
 ### Progression
 
