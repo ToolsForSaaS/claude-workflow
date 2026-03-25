@@ -4,7 +4,7 @@ description: Creer des issues GitHub structurees avec decoupage intelligent, cri
 argument-hint: [description de ce qu'il faut faire]
 ---
 
-Lis `.claude/skills/workflow-persona/SKILL.md` avant de commencer.
+Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 

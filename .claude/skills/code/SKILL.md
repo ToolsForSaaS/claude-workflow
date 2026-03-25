@@ -4,7 +4,7 @@ description: Implementer du code a partir d'un plan ou d'une issue. Cree la bran
 argument-hint: [numero issue ou rien si plan deja present]
 ---
 
-Lis `.claude/skills/workflow-persona/SKILL.md` avant de commencer.
+Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 

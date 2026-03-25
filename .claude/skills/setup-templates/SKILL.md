@@ -1,5 +1,5 @@
 ---
-name: templates
+name: setup-templates
 description: Initialiser ou remplir les fichiers templates projet-specific dans .claude/skills/. Detecte les placeholders et propose des valeurs. Utiliser apres /init pour configurer les conventions du projet.
 argument-hint: [nom du template ou rien pour tous]
 ---

@@ -27,3 +27,15 @@ templates/nom/SKILL.md        → copies dans .claude/skills/ uniquement si le r
 - Skills invocables : workflow/action avec `user-invocable: true`
 - Skills expertise : conventions/regles avec `user-invocable: false`
 - `$ARGUMENTS` toujours en fin de skill invocable
+
+### Convention de nommage des skills
+
+| Prefixe / pattern | Type | Exemples |
+|-------------------|------|----------|
+| `create-*` | Cree un artefact (issue, PR, skill) | `create-issue`, `create-pr` |
+| `setup-*` | Configure un aspect du projet (one-shot) | `setup-mcp`, `setup-ui-ux` |
+| `prepare-*` | Analyse et prepare sans executer | `prepare-plan` |
+| `audit-*` | Audite et recommande des corrections | `audit-lint` |
+| `*-conventions` | Expertise passive (non-invocable) | `git-conventions`, `frontend-code-conventions` |
+| `_*` | Skill interne (charge automatiquement, non-invocable) | `_workflow-persona` |
+| verbe simple | Action directe frequente du workflow | `commit`, `code`, `init` |

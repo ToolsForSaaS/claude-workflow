@@ -4,7 +4,7 @@ description: Creer ou mettre a jour une Pull Request GitHub. Genere titre, descr
 argument-hint: [rien — detecte automatiquement la branche courante]
 ---
 
-Lis `.claude/skills/workflow-persona/SKILL.md` avant de commencer.
+Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 

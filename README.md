@@ -18,12 +18,12 @@ claude-workflow/
       frontend-code-conventions/SKILL.md  # conventions architecture frontend
       git-conventions/SKILL.md    # conventions branches/commits/PRs
       init/SKILL.md               # /init — generer CLAUDE.md
-      lint-audit/SKILL.md         # /lint-audit — audit lint/format
+      audit-lint/SKILL.md         # /audit-lint — audit lint/format
       prepare-plan/SKILL.md       # /prepare-plan — planification
       setup-mcp/SKILL.md          # /setup-mcp — configurer les MCP
       setup-ui-ux/SKILL.md        # /setup-ui-ux — generer conventions UI/UX
-      templates/SKILL.md          # /templates — remplir les templates
-      workflow-persona/SKILL.md   # persona commune aux skills workflow
+      setup-templates/SKILL.md    # /setup-templates — remplir les templates
+      _workflow-persona/SKILL.md  # persona commune aux skills workflow (interne)
   templates/
     tech-stack/SKILL.md            # squelette stack + conventions projet-specific
     CLAUDE-skills-index.md        # index injecte dans le CLAUDE.md des projets
