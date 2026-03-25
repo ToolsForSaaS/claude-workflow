@@ -4,6 +4,8 @@ description: Conventions d'architecture frontend framework-agnostiques. Structur
 user-invocable: false
 ---
 
+Pour la matrice de decision, regles de decoupage et anti-patterns, consulte [reference.md](reference.md).
+
 ## Architecture pages / features / shared
 
 ### Pages
@@ -54,36 +56,28 @@ service → [mapper optionnel] → Screen → composants UI
 ### Types
 
 - Utiles, pas decoratifs
-- Ne pas multiplier les types quasi identiques sans benefice reel
 - Un type distinct uniquement si la forme backend differe reellement de la forme UI
-- Pas de types "par discipline architecturale"
 
 ### Mappers
 
-- Utiles mais non automatiques
-- Creer un mapper seulement si :
-  - Vraie transformation backend→frontend
-  - Champs a deriver ou donnees a normaliser
-  - Transformation reutilisee ou lourde
+- Creer un mapper seulement si vraie transformation backend→frontend
 - Pas de mapper "par principe"
 
 ### Composables / hooks
 
 - Rares, petits, specialises
 - Jamais de "composable/hook controller" qui remplace le Screen
-- La logique reste dans le Screen tant qu'elle est lisible
 - Extraire seulement un sous-probleme clair et borne
 
 ### State management (stores)
 
-- Rares : uniquement pour etat partage global (auth, user, permissions)
+- Uniquement pour etat partage global (auth, user, permissions)
 - Etat local d'ecran = dans le Screen, pas dans un store
 
 ### Services
 
 - Appels API uniquement
 - Pas de logique d'affichage ou de formatage UI
-- Si un service transforme trop pour la vue → mapper
 
 ## Role des Screens
 
@@ -92,41 +86,3 @@ Point d'orchestration de l'ecran.
 **Contient** : etat local, orchestration, appels services, actions UI, lifecycle.
 
 **Ne contient pas** : helpers transverses, utilitaires generiques, logique reutilisable hors feature.
-
-## Matrice de decision — ou placer le code
-
-| Question | Destination |
-|----------|-------------|
-| Appel backend ? | `services/` |
-| Transformation de donnees avec vraie valeur ? | `mappers/` |
-| Fonction pure transverse ? | `shared/lib/` |
-| Etat partage global ? | store |
-| Logique locale lisible ? | Screen |
-| Sous-probleme reutilisable ou lourd ? | petit composable/hook cible |
-
-## Decoupage quand un Screen grossit
-
-Extraire dans cet ordre :
-
-1. Composant UI/metier
-2. Mapper si transformation reelle
-3. Petit composable/hook cible
-
-**Jamais** extraire un gros composable/hook controller pour "nettoyer visuellement".
-
-## Convention de style
-
-- Noms explicites, responsabilites visibles, peu d'indirection
-- Lisibilite pratique > lisibilite academique
-- Code un peu plus long si plus simple a lire = OK
-- Pas d'alias obscurs, pas de helpers magiques, pas d'architecture enterprise decorative
-
-## Anti-patterns
-
-- Page qui contient toute la logique d'ecran
-- Store pour etat local d'une page
-- Composable/hook geant qui remplace le Screen
-- Multiplication de types quasi identiques
-- Mapper cree par reflexe sans transformation utile
-- Service qui fait de la presentation UI cachee
-- Code genere avec trop d'abstraction ou de couches

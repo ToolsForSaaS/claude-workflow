@@ -202,6 +202,55 @@ Si CLAUDE.md dit "indentation 2 espaces" mais le skill dit "indentation 4 espace
 
 ---
 
+## Frontmatter — controle d'invocation
+
+| Config                           | `/skill` par l'user | Charge auto par Claude |
+| -------------------------------- | ------------------- | ---------------------- |
+| _(defaut)_                       | oui                 | oui                    |
+| `user-invocable: false`          | non                 | oui                    |
+| `disable-model-invocation: true` | oui                 | non                    |
+
+## Arguments et variables
+
+| Syntaxe                | Description                          | Exemple                                              |
+| ---------------------- | ------------------------------------ | ---------------------------------------------------- |
+| `$ARGUMENTS`           | Tous les arguments                   | `/skill Fix auth bug` -> `Fix auth bug`              |
+| `$0`, `$1`, `$2`       | Arguments positionnels               | `/skill Button React Vue` -> `$0`=Button, `$1`=React |
+| `${CLAUDE_SKILL_DIR}`  | Chemin absolu du repertoire du skill | Pour referencer les fichiers supports                |
+| `${CLAUDE_SESSION_ID}` | UUID de la session courante          | Pour logs/fichiers temporaires                       |
+
+Si `$ARGUMENTS` n'est pas dans le contenu, Claude Code l'ajoute automatiquement a la fin.
+
+## Conventions de nommage
+
+- **kebab-case** uniquement, minuscules, chiffres, tirets
+- Max 64 caracteres
+- Pas d'imbrication (`skills/utils/validators/` = interdit)
+- Pas de prefixe inutile (`expert-security` -> `security`)
+
+### Categories
+
+| Type                   | Exemples                              | Frontmatter                      |
+| ---------------------- | ------------------------------------- | -------------------------------- |
+| Expertise / convention | `branch-convention`, `lint-expertise` | `user-invocable: false`          |
+| Action / workflow      | `pr`, `code`, `plan`, `deploy`        | defaut (invocable)               |
+| Side effects           | `deploy`, `send-email`                | `disable-model-invocation: true` |
+| Contexte partage       | `shared`                              | `user-invocable: false`          |
+
+## Anti-patterns
+
+- Description vague -> jamais charge auto
+- Skill >200 lignes sans fichiers supports -> fragmenter
+- Frontmatter sans description -> routing impossible
+- `context: fork` avec guidelines sans tache explicite -> sous-agent inutile
+- `disable-model-invocation: true` sur un skill d'expertise -> jamais utilise
+- Fichier plat `nom.md` au lieu de `nom/SKILL.md`
+- Valeurs projet-specific dans un skill partage
+- Oublier `$ARGUMENTS` sur un skill invocable
+- Oublier `argument-hint` quand les arguments sont attendus
+
+---
+
 ## Exemples concrets
 
 ### 1. Expertise pure — conventions de commit

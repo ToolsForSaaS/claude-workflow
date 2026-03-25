@@ -4,6 +4,8 @@ description: Conventions git du projet. Branches, commits et Pull Requests. Util
 user-invocable: false
 ---
 
+Pour les exemples et templates complets, consulte [reference.md](reference.md).
+
 ## Branches
 
 ### Format
@@ -26,15 +28,7 @@ type/numero-titre-court
 ### Regles
 
 - Le titre court est en **kebab-case**, en **anglais**, **max 5 mots**
-- Le numero correspond au numero de l'issue GitHub associee
-
-### Exemples
-
-| Issue | Branche |
-|-------|---------|
-| #42 `[Feature] Ajout authentification OAuth` | `feat/42-add-oauth-authentication` |
-| #17 `[Bug] Crash au login avec email +` | `fix/17-login-crash-email-plus` |
-| #8 `[Docs] Documentation API publique` | `docs/8-public-api-documentation` |
+- Le numero correspond au numero de l'issue associee
 
 ---
 
@@ -66,32 +60,11 @@ Le scope correspond au module metier / DDD (`auth`, `billing`, `user`...).
 
 ### Body
 
-Optionnel, uniquement si le changement n'est pas evident depuis le titre. Sous forme de liste a puces :
-
-```
-✨ feat(auth): ajout login OAuth Google
-
-- integre le flow Authorization Code avec PKCE
-- gere le refresh token via cookie HttpOnly
-```
+Optionnel, uniquement si le changement n'est pas evident depuis le titre. Sous forme de liste a puces.
 
 ### Regles
 
 - **Pas de signature** : ne jamais ajouter de trailer `Co-Authored-By` ou autre signature automatique dans les messages de commit
-
-### Exemples
-
-```
-🐛 fix(billing): correction du calcul de TVA sur les abonnements annuels
-```
-
-```
-🔧 chore: mise a jour des dependances npm
-```
-
-```
-♻️ refactor(user): extraction du service de validation email
-```
 
 ---
 
@@ -101,60 +74,9 @@ Optionnel, uniquement si le changement n'est pas evident depuis le titre. Sous f
 
 Format : `[Type] Titre de l'issue (#numero)`
 
-Exemples :
+### Body et commentaire d'iteration
 
-- `[Feature] Ajout authentification OAuth (#42)`
-- `[Fix] Crash au login avec email contenant + (#17)`
-
-### Body
-
-```markdown
-## Contexte
-
-Lien vers l'issue et resume en 1-2 phrases de pourquoi ce changement est necessaire.
-
-Closes #XX
-
-## Ce qui a ete fait
-
-Description claire de l'implementation. Pas une liste de fichiers — une explication de ce qui a change et pourquoi c'est fait comme ca.
-
-## Fichiers modifies
-
-- `chemin/fichier.ts` — ce qu'on y a fait
-- `chemin/fichier.ts` — idem
-
-## Points de review
-
-Ce sur quoi le reviewer doit porter son attention en priorite. Decisions techniques non triviales, zones sensibles, compromis acceptes.
-
-## Tests
-
-Ce qui a ete teste, comment. Si rien n'a ete teste, le dire explicitement avec la raison.
-```
-
-### Commentaire d'iteration
-
-Utilise uniquement lors de la mise a jour d'une PR existante. Liste tous les commits depuis la derniere mise a jour.
-
-```markdown
-## Mise a jour — [date]
-
-### Nouveaux commits
-
-- `emoji type(scope): description du commit 1`
-- `emoji type(scope): description du commit 2`
-
-### Changements ajoutes
-
-- `chemin/fichier` — ce qui a change
-
-### Impact
-
-Resume en une phrase de l'ensemble de cette iteration.
-```
-
-S'il n'y a qu'un seul commit, le format reste identique — une seule entree dans la liste.
+Consulte [reference.md](reference.md) pour les templates complets (body PR et commentaire d'iteration).
 
 ### Regles de formatage MCP GitHub
 

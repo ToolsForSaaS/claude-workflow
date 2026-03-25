@@ -1,126 +1,127 @@
 # Grille d'audit AI-Driven Development
 
-Criteres de scoring, bonnes pratiques et anti-patterns pour auditer skills, CLAUDE.md et workflow Claude Code.
+Criteres d'evaluation bases sur la philosophie AI-Driven Development.
+Principe central : **la qualite est garantie par le process, pas par la discipline de l'agent ou du developpeur**.
 
-## Ce que tu evalues
+## Pipeline de reference
 
-### 1. Architecture des commandes et skills (poids: critique)
+```
+/setup → /hello → /prepare-plan → /code → /review → /test → /create-pr → /notifier
+```
 
-**Bonnes pratiques :**
-- Separation stricte orchestration (commande) vs expertise (skill)
-- Skills referencees explicitement via `Commence par lire .claude/skills/...`
-- `$ARGUMENTS` toujours present en fin de commande
-- Modes de fonctionnement clairs (avec/sans argument)
-- Confirmation avant toute action irreversible
-- Flux lineaire lisible (etapes numerotees)
+Chaque etape est un skill invocable independamment. L'humain decide quand passer a l'etape suivante.
+
+---
+
+## Axes d'evaluation
+
+### 1. Process — Pipeline sequentiel avec gates (poids: critique)
+
+**Criteres :**
+- [ ] Le workflow est sequentiel avec des gates explicites entre chaque etape
+- [ ] Chaque etape est un skill invocable independamment par slash command
+- [ ] Chaque skill guide vers l'etape suivante ("Prochaine etape : /xxx")
+- [ ] Le plan est persiste dans un fichier (`.claude/plans/`), pas juste dans la conversation
+- [ ] Il existe un skill `/setup` qui scaffolde la config projet en une passe
 
 **Anti-patterns :**
-- Commande qui contient des regles metier (>20 lignes de criteres = extraire en skill)
-- Skill qui contient de la logique d'execution
-- Commande sans `$ARGUMENTS`
-- Pas de confirmation avant push/creation GitHub/ecriture de fichiers
+- Skill monolithique qui fait planifier+coder+tester+PR en une seule commande
+- Plan uniquement dans la conversation (impossible de reprendre en session fraiche)
+- Pas de gate de validation entre code et PR (l'agent enchaine sans review ni test)
+- Agent Teams pour du dev feature classique (overkill, imprevisible, 7x plus cher)
+
+### 2. Qualite — Par defaut, pas par effort (poids: critique)
+
+**Criteres :**
+- [ ] Le formatage et le linting sont geres par des hooks PostToolUse, pas par des instructions au LLM
+- [ ] Il existe une etape de review automatique via sub-agent (contexte isole)
+- [ ] Il existe une etape de test avec boucle corrective bornee (max N tentatives)
+- [ ] Les commandes destructives sont bloquees par des hooks PreToolUse
+- [ ] Un hook Stop verifie les tests avant de considerer une tache terminee
+- [ ] L'agent signale les problemes structurels a l'humain au lieu de boucler indefiniment
+
+**Anti-patterns :**
+- "Assure-toi que le code est bien formatte" dans un skill (c'est le job d'un hook)
+- "Pas de console.log", "Pas d'import inutilise" dans les instructions (c'est le job du linter)
+- Pas de boucle corrective bornee (l'agent boucle indefiniment sur un test qui fail)
+- Review et tests dans le contexte principal (pollution du contexte)
+
+### 3. Architecture — Plugin + Config projet (poids: eleve)
+
+**Criteres :**
+- [ ] Separation nette plugin (generique, versionne) / config projet (specifique, dans le repo)
+- [ ] Le plugin ne contient aucune info specifique a un projet (stack, URLs, chemins)
+- [ ] Il existe un fichier `workflow-config` standardise lu par tous les skills (commandes lint/test/build, plateforme, notifications)
+- [ ] CLAUDE.md est minimal (<50 lignes) — uniquement les conventions universelles du projet
+- [ ] Les patterns contextuels sont dans `.claude/rules/` et se chargent a la demande selon les fichiers touches
+
+**Anti-patterns :**
+- CLAUDE.md obese (>50 lignes de regles — l'instruction-following se degrade)
+- Rules dans CLAUDE.md (patterns specifiques a certains fichiers codes en dur au lieu de `.claude/rules/`)
+- Config projet dans le plugin (chemins, noms de stack, URLs en dur dans les skills)
+- CLAUDE.md qui contient des conventions de code style (c'est le job du linter/formatter)
+
+### 4. Contexte — Ressource rare (poids: eleve)
+
+**Criteres :**
+- [ ] Les skills utilisent le progressive disclosure (frontmatter leger, details dans `reference.md`)
+- [ ] Les sub-agents sont utilises pour isoler review et tests du contexte principal
+- [ ] SKILL.md < 150 lignes — au-dela, fragmenter en fichiers supports
+- [ ] Max 3 fichiers charges en cascade par un skill (via "Lis .claude/skills/...")
+- [ ] Les plans sont dans des fichiers, pas dans la conversation
+
+**Anti-patterns :**
+- Skill >200 lignes sans fichiers supports
+- Sub-agents hyper-specialises avec contexte cache (preferer le pattern Master-Clone)
+- Tout inline dans le SKILL.md (exemples, templates, tables de reference)
+
+### 5. Permissions et autonomie (poids: eleve)
+
+**Criteres :**
+- [ ] L'agent a les permissions ouvertes (acceptEdits minimum, idealement bypass)
+- [ ] Les garde-fous sont des hooks deterministes, pas des restrictions de permissions
+- [ ] L'agent corrige lui-meme les problemes mineurs (lint, tests simples)
+- [ ] L'agent signale les problemes structurels au lieu de boucler
+- [ ] Il y a un nombre max d'iterations correctives pour eviter les boucles infinies
+
+**Anti-patterns :**
+- Limiter les permissions au lieu de poser des hooks (degrade les resultats de maniere disproportionnee)
+- Pas de PreToolUse hook pour bloquer les commandes dangereuses (rm -rf, push force main, DROP TABLE)
+
+### 6. Skills — Qualite de conception (poids: moyen)
+
+**Criteres :**
+- [ ] Separation stricte orchestration (skill action) vs expertise (skill convention)
+- [ ] `$ARGUMENTS` toujours present en fin de skill invocable
+- [ ] `argument-hint` present quand des arguments sont attendus
+- [ ] Description precise (domaine + declencheur, 20-50 mots)
+- [ ] Confirmation avant toute action irreversible (push, creation GitHub, ecriture)
+- [ ] Flux lineaire lisible (etapes numerotees)
+- [ ] Persona coherente via `_workflow-persona`
+
+**Anti-patterns :**
+- Description vague (jamais charge auto)
+- Frontmatter sans description (routing impossible)
+- Skill d'expertise avec `disable-model-invocation: true` (jamais utilise)
+- Fichier plat `nom.md` au lieu de `nom/SKILL.md`
 - Duplication de contenu entre skills
-- Skill qui re-definit ce qui est dans `shared.md`
-- Commande qui hardcode des valeurs appartenant au skill
 
-### 2. CLAUDE.md et configuration projet (poids: critique)
+### 7. Replicabilite (poids: moyen)
 
-**Bonnes pratiques :**
-- CLAUDE.md concis, actionnable, sans redondance avec les skills
-- Instructions claires sur la stack, l'architecture, les conventions
-- Pas de documentation — uniquement des directives
-- Separation global CLAUDE.md (preferences utilisateur) vs projet CLAUDE.md (regles du repo)
-- Utilisation de `tech-stack/SKILL.md` pour les regles specifiques au projet
-
-**Anti-patterns :**
-- CLAUDE.md qui fait 500 lignes (trop long = ignore)
-- Regles contradictoires entre CLAUDE.md global et projet
-- Documentation generale dans CLAUDE.md au lieu de directives
-- Absence de CLAUDE.md (Claude improvise tout)
-- Dupliquer des regles qui sont deja dans les skills
-
-### 3. Workflow de developpement (poids: eleve)
-
-**Cycle optimal AI-Driven :**
-1. `/issue` — Definir clairement le travail (criteres d'acceptance)
-2. `/plan` — Analyser et planifier avant de coder
-3. `/code` — Implementer selon le plan, pas en freestyle
-4. `/pr` — Soumettre proprement
-
-**Bonnes pratiques :**
-- Toujours planifier avant de coder (sauf fix trivial)
-- Issues avec criteres d'acceptance clairs
-- Commits atomiques et frequents (1 commit = 1 etape logique)
-- Branches nommees selon convention
-- PR avec contexte suffisant pour review
-- Lint/format automatise (pre-commit hooks)
-
-**Anti-patterns :**
-- Coder directement sans plan (Claude part dans tous les sens)
-- Issues vagues sans criteres d'acceptance
-- Gros commits monolithiques
-- Branches sans convention de nommage
-- PR sans description ou avec description generee sans relecture
-- Pas de hooks pre-commit
-
-### 4. Qualite des prompts et instructions (poids: eleve)
-
-**Bonnes pratiques :**
-- Instructions specifiques et non ambigues
-- Exemples concrets dans les skills
-- Persona claire qui oriente les decisions
-- Format de sortie explicite (templates)
-- Hierarchie de priorites quand il y a des compromis
-
-**Anti-patterns :**
-- Instructions vagues ("fais un bon code")
-- Pas d'exemples concrets
-- Persona absente (reponses generiques)
-- Pas de format de sortie defini (output imprevisible)
-- Instructions contradictoires
-
-### 5. Synchronisation et maintenabilite (poids: moyen)
-
-**Bonnes pratiques :**
-- Source unique de verite (claude-workflow repo)
-- Sync automatise et fiable
-- Templates pour les fichiers projet-specific
-- Versionne dans git
+**Criteres :**
+- [ ] Le meme plugin fonctionne sur n'importe quel projet (backend, frontend, fullstack)
+- [ ] La config projet se scaffolde via `/setup` en quelques minutes
+- [ ] Les commit messages suivent les conventional commits
+- [ ] Les branches suivent une convention configurable par projet
+- [ ] Les PR ont une structure de description standardisee mais configurable
+- [ ] Source unique de verite (claude-workflow repo) avec sync automatise
 
 **Anti-patterns :**
 - Editer les skills directement dans un projet (ecrase au prochain sync)
-- Templates qui ecrasent les personnalisations
+- Templates qui ecrasent les personnalisations existantes
 - Pas de sync automatise (drift entre projets)
-- Fichiers partages avec logique specifique a un projet
 
-### 6. Utilisation avancee de Claude Code (poids: moyen)
-
-**Fonctionnalites souvent sous-utilisees :**
-- **Hooks** : automatiser des actions (format on save, lint pre-commit, notifications)
-- **Memoire** : stocker les preferences, retours, contexte projet
-- **MCP** : integrations externes (GitHub, GitLab, Jira, Slack...)
-- **Agents** : deleguer des taches paralleles ou specialisees
-- **Plans** : aligner sur l'approche avant d'implementer
-- **Tasks** : suivre la progression sur des taches complexes
-
-**Anti-patterns :**
-- Tout faire manuellement quand un hook pourrait automatiser
-- Ne jamais utiliser la memoire (repeter les memes instructions)
-- Ignorer les MCP disponibles (copier-coller au lieu d'integrer)
-- Ne pas utiliser `/plan` sur les taches non triviales
-
-### 7. Gestion des erreurs et resilience (poids: moyen)
-
-**Bonnes pratiques :**
-- Commandes qui gerent les cas d'erreur (pas de branche? pas d'issue?)
-- Verifications pre-conditions avant d'agir
-- Messages d'erreur clairs et actionnables
-- Fallback quand un outil n'est pas disponible
-
-**Anti-patterns :**
-- Commande qui assume que tout va bien (pas de gestion d'erreur)
-- Pas de verification de l'etat courant (branche, staged files, etc.)
-- Erreurs silencieuses
+---
 
 ## Systeme de scoring
 
@@ -142,27 +143,33 @@ Criteres de scoring, bonnes pratiques et anti-patterns pour auditer skills, CLAU
 ## Resume executif
 [2-3 phrases : etat general, forces principales, axe d'amelioration prioritaire]
 
+## Scores par axe
+| Axe | Score | Commentaire |
+|-----|-------|-------------|
+| Process | X/10 | ... |
+| Qualite | X/10 | ... |
+| Architecture | X/10 | ... |
+| Contexte | X/10 | ... |
+| Permissions | X/10 | ... |
+| Skills | X/10 | ... |
+| Replicabilite | X/10 | ... |
+
 ## Points forts
 - [Ce qui fonctionne bien et qu'il faut garder]
 
 ## Problemes critiques
-[Chaque probleme :]
 ### [Titre du probleme]
 - **Constat** : ce qui ne va pas
 - **Impact** : pourquoi c'est un probleme
 - **Solution** : comment corriger, avec exemple concret
 
 ## Ameliorations recommandees
-[Par priorite decroissante :]
-### [Titre]
+### [Titre] — Priorite [P0/P1/P2]
 - **Quoi** : description
 - **Pourquoi** : gain attendu
 - **Comment** : etapes concretes
 - **Effort** : faible / moyen / eleve
 
-## Fonctionnalites sous-utilisees
-[Fonctionnalites de Claude Code qui pourraient ameliorer le workflow]
-
 ## Plan d'action
-[Top 5 des actions par ordre de priorite, avec effort estime]
+[Top 5 des actions par ordre de priorite]
 ```
