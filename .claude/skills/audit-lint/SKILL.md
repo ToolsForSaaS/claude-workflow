@@ -4,7 +4,7 @@ description: Auditer et configurer le linting/formatting d'un projet TypeScript.
 argument-hint: [biome|eslint|hooks|perf|strict ou rien pour audit complet]
 ---
 
-Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
+Utilise Read pour charger `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 
@@ -25,7 +25,7 @@ Focus sur un aspect specifique. Arguments possibles :
 
 ## Etape 1 — Explorer les configs existantes
 
-Lis `.claude/skills/tech-stack/SKILL.md` pour comprendre la stack du projet, puis scanne pour identifier toutes les configurations lint/format en place :
+Utilise Read pour charger `.claude/skills/tech-stack/SKILL.md` pour comprendre la stack du projet, puis scanne pour identifier toutes les configurations lint/format en place :
 
 - `biome.json` / `biome.jsonc` (racine et workspaces)
 - `eslint.config.mjs` / `.eslintrc.*` (racine et workspaces)

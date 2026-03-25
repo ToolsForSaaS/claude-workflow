@@ -4,7 +4,7 @@ description: Implementer du code a partir d'un plan ou d'une issue. Cree la bran
 argument-hint: [numero issue ou rien si plan deja present]
 ---
 
-Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
+Utilise Read pour charger `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 
@@ -20,7 +20,7 @@ Le plan peut venir de trois sources (par ordre de priorite) :
 
 ## Etape 0 — Verifications
 
-Lis `.claude/skills/tech-stack/SKILL.md` puis verifie :
+Utilise Read pour charger `.claude/skills/tech-stack/SKILL.md` puis verifie :
 
 - [ ] Le repo a un remote `origin` configure
 - [ ] Le working tree est propre (pas de changements non commites qui bloqueraient un checkout)
@@ -31,7 +31,7 @@ Si une verification echoue, signale-le clairement et arrete-toi. Ne tente pas de
 
 ## Etape 1 — Creer la branche
 
-Lis `.claude/skills/git-conventions/SKILL.md` (section Branches) puis cree une branche depuis la **branche par defaut** definie dans `tech-stack` (section Git) en suivant la convention.
+Utilise Read pour charger `.claude/skills/git-conventions/SKILL.md` (section Branches) puis cree une branche depuis la **branche par defaut** definie dans `tech-stack` (section Git) en suivant la convention.
 
 Annonce la branche creee avant de commencer.
 
@@ -47,7 +47,7 @@ Ne fais PAS de verification de style ou de formatage — c'est le role des hooks
 
 ### Commits atomiques
 
-Chaque etape du plan terminee = un commit. Lis `.claude/skills/git-conventions/SKILL.md` (section Commits) pour le format.
+Chaque etape du plan terminee = un commit. Utilise Read pour charger `.claude/skills/git-conventions/SKILL.md` (section Commits) pour le format.
 
 ### Progression
 

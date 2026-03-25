@@ -4,7 +4,7 @@ description: Planifier l'implementation d'une issue GitHub. Analyse le code, pro
 argument-hint: [numero issue, URL ou texte]
 ---
 
-Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
+Utilise Read pour charger `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 

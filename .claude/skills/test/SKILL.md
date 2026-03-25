@@ -4,13 +4,13 @@ description: Executer les tests du projet avec boucle corrective bornee (max 3 t
 argument-hint: [rien ou fichier/pattern specifique]
 ---
 
-Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
+Utilise Read pour charger `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 
 ## Etape 0 — Verifications
 
-Lis `.claude/skills/workflow-config/SKILL.md` pour identifier la commande de test du projet.
+Utilise Read pour charger `.claude/skills/workflow-config/SKILL.md` pour identifier la commande de test du projet.
 
 - [ ] Une commande de test est configuree dans `workflow-config`
 - [ ] La commande de test est executable (`which` ou `--version` sur l'outil)

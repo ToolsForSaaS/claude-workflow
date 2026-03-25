@@ -4,13 +4,13 @@ description: Creer ou mettre a jour une Pull Request GitHub. Genere titre, descr
 argument-hint: [rien — detecte automatiquement la branche courante]
 ---
 
-Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
+Utilise Read pour charger `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 
 ## Etape 0 — Verifications
 
-Lis `.claude/skills/tech-stack/SKILL.md` puis verifie :
+Utilise Read pour charger `.claude/skills/tech-stack/SKILL.md` puis verifie :
 
 - [ ] Le repo a un remote `origin` configure
 - [ ] La branche courante n'est pas la branche par defaut (on ne cree pas de PR depuis main/develop)
@@ -42,7 +42,7 @@ Verifie via MCP GitHub si une PR ouverte existe deja sur la branche courante. Le
 
 ## Etape 3 — Rediger la description
 
-Lis `.claude/skills/git-conventions/SKILL.md` (section Pull Requests) puis redige la description.
+Utilise Read pour charger `.claude/skills/git-conventions/SKILL.md` (section Pull Requests) puis redige la description.
 
 Que ce soit pour une nouvelle PR ou une mise a jour, la description suit le format defini dans git-conventions et doit toujours refleter l'etat actuel complet de la PR — jamais de mention "ajoute", "mis a jour" ou "nouveau". C'est le role du commentaire d'iteration (etape 4).
 

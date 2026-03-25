@@ -13,7 +13,7 @@ Analyse rapidement :
 
 ## Etape 2 — Contexte projet
 
-Lis `.claude/skills/tech-stack/SKILL.md` si disponible pour identifier le projet et sa stack.
+Utilise Read pour charger `.claude/skills/tech-stack/SKILL.md` si disponible pour identifier le projet et sa stack.
 
 Si le fichier n'existe pas, detecte le projet a partir de `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, ou tout autre marqueur present.
 

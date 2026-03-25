@@ -4,13 +4,13 @@ description: Envoyer une notification apres creation ou mise a jour d'une PR. Ut
 argument-hint: [URL de la PR ou rien si detectable depuis la branche]
 ---
 
-Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
+Utilise Read pour charger `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 
 ## Etape 0 — Verifications
 
-Lis `.claude/skills/workflow-config/SKILL.md` pour identifier le canal de notification configure.
+Utilise Read pour charger `.claude/skills/workflow-config/SKILL.md` pour identifier le canal de notification configure.
 
 - [ ] Un canal de notification est configure (section Notifications de `workflow-config`)
 - [ ] Le MCP correspondant est disponible (Slack, etc.)

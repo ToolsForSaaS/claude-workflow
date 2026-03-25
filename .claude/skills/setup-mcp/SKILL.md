@@ -5,7 +5,7 @@ user-invocable: true
 argument-hint: [rien — detecte automatiquement]
 ---
 
-Lis `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
+Utilise Read pour charger `.claude/skills/_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 
