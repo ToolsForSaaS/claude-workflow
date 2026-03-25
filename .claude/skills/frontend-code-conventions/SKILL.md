@@ -4,8 +4,6 @@ description: Conventions d'architecture frontend framework-agnostiques. Structur
 user-invocable: false
 ---
 
-Pour la matrice de decision, regles de decoupage et anti-patterns, consulte [reference.md](reference.md).
-
 ## Architecture pages / features / shared
 
 ### Pages
@@ -86,3 +84,5 @@ Point d'orchestration de l'ecran.
 **Contient** : etat local, orchestration, appels services, actions UI, lifecycle.
 
 **Ne contient pas** : helpers transverses, utilitaires generiques, logique reutilisable hors feature.
+
+Si tu hesites sur ou placer du code ou si tu detectes un anti-pattern potentiel, utilise Read pour charger `reference.md` (matrice de decision, regles de decoupage, anti-patterns).

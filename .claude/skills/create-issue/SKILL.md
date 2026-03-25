@@ -23,7 +23,7 @@ Utilise le MCP GitHub pour identifier le repo actif a partir du remote Git (`ori
 
 Lis attentivement ce que l'utilisateur decrit. Evalue si c'est **une seule issue ou plusieurs**.
 
-Consulte [reference.md](reference.md) pour les regles de decoupage detaillees.
+Si la demande couvre plusieurs domaines ou natures, utilise Read pour charger `reference.md` (regles de decoupage).
 
 Principe : en cas de doute, prefere **decouper** — une issue trop petite est moins grave qu'une issue fourre-tout.
 
@@ -34,7 +34,7 @@ Pour **chaque issue** identifiee, redige un titre et un body structures.
 **Titre** : court, precis, en francais. Format : `[Type] Description concise`
 Types : `[Bug]`, `[Feature]`, `[Refactor]`, `[Chore]`, `[Docs]`, `[Perf]`
 
-**Body** : consulte [reference.md](reference.md) pour le template (sections Contexte, Description, Criteres d'acceptance, Notes techniques).
+**Body** : utilise Read pour charger `reference.md` (template body avec sections Contexte, Description, Criteres d'acceptance, Notes techniques).
 
 ## Etape 4 — Recapituler avant de creer
 
@@ -44,7 +44,7 @@ Affiche le recap de toutes les issues puis demande confirmation : **"Je cree ces
 
 Une fois confirmation recue, cree chaque issue via le MCP GitHub dans l'ordre logique (dependances d'abord).
 
-- Assigne le label correspondant au type (consulte [reference.md](reference.md) pour la table de correspondance). Si le label n'existe pas encore sur le repo, cree-le.
+- Assigne le label correspondant au type (utilise Read pour charger `reference.md` si besoin de la table de correspondance). Si le label n'existe pas encore sur le repo, cree-le.
 - Si l'issue depend d'une autre, ajoute `Depend de #X` dans la section Contexte du body
 - Affiche l'URL retournee
 

@@ -6,11 +6,9 @@ argument-hint:
   [description du skill a creer | audit | audit commandes | audit workflow]
 ---
 
-Pour les details exhaustifs (champs, syntaxe, patterns avances, exemples), consulte [reference.md](reference.md).
-
 ### Mode audit
 
-Si l'argument contient `audit` → consulte [audit-grille.md](audit-grille.md) et realise un audit du projet :
+Si l'argument contient `audit` → utilise Read pour charger `audit-grille.md` et realise un audit du projet :
 
 1. Explorer : `.claude/` (skills, settings), `CLAUDE.md`, hooks, conventions
 2. Lire chaque skill et verifier la coherence
@@ -45,7 +43,7 @@ user-invocable: true                  # false = cache du menu /, charge auto uni
 ---
 ```
 
-Champs avances (`allowed-tools`, `context`, `agent`, `model`, `effort`, `disable-model-invocation`) : consulte [reference.md](reference.md).
+Pour les champs avances (`allowed-tools`, `context`, `agent`, `model`, `effort`, `disable-model-invocation`), utilise Read pour charger `reference.md`.
 
 ## Description — cle du routage
 
@@ -80,7 +78,7 @@ Non sinon — integrer dans le skill appelant.
 **Nature :** creation ou modification ?
 **Type :** expertise (`user-invocable: false`), action (defaut), ou sous-agent (`context: fork`) ?
 
-Consulte [templates.md](templates.md) pour les squelettes selon le type.
+Utilise Read pour charger `templates.md` et choisir le squelette adapte au type.
 
 ### Etape 2 — Questions de clarification
 

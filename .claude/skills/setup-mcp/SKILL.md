@@ -24,7 +24,7 @@ Extrais les noms de serveurs uniques (la partie entre le premier et le deuxieme 
 - `mcp__github__create_issue` → `github`
 - `mcp__gitea__list_repos` → `gitea`
 
-Consulte le catalogue [mcp-catalog.md](mcp-catalog.md) pour mapper chaque serveur detecte a sa configuration type.
+Utilise Read pour charger `mcp-catalog.md` et mapper chaque serveur detecte a sa configuration type.
 
 Si un serveur detecte n'est pas dans le catalogue, signale-le :
 

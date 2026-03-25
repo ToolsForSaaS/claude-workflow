@@ -40,7 +40,7 @@ Lis chaque fichier trouve pour comprendre la configuration actuelle.
 
 ## Etape 2 — Analyser
 
-Consulte [reference.md](reference.md) pour les grilles d'evaluation detaillees, puis evalue chaque axe :
+Utilise Read pour charger `reference.md` (grilles d'evaluation detaillees), puis evalue chaque axe :
 
 1. Choix des outils — sont-ils optimaux ?
 2. Performance — temps de lint, cache active ?

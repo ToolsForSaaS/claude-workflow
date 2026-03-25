@@ -19,7 +19,7 @@ Si `$ARGUMENTS` contient un theme (ex: `minimal`, `premium`, `enterprise`), pre-
 
 ## Etape 1 — Questionnaire interactif
 
-Consulte [reference.md](reference.md) pour le questionnaire complet (8 sections : identite visuelle, layouts, formulaires, tableaux, feedback, chargement, animations, design system).
+Utilise Read pour charger `reference.md` — il contient le questionnaire complet (8 sections) avec les options pour chaque groupe.
 
 Pose les questions **un groupe a la fois** via AskUserQuestion. Pour chaque groupe, propose les options entre parentheses et un choix par defaut.
 
@@ -42,7 +42,7 @@ Le contenu doit :
 - Inclure un tableau recapitulatif en fin de fichier
 - Ne jamais depasser 150 lignes
 
-Consulte [reference.md](reference.md) pour un exemple de structure generee.
+Si besoin d'un exemple de structure, utilise Read pour charger `reference.md` (section "Exemple de structure generee").
 
 ## Etape 3 — Confirmer et ecrire
 

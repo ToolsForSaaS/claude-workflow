@@ -4,8 +4,6 @@ description: Conventions git du projet. Branches, commits et Pull Requests. Util
 user-invocable: false
 ---
 
-Pour les exemples et templates complets, consulte [reference.md](reference.md).
-
 ## Branches
 
 ### Format
@@ -76,7 +74,7 @@ Format : `[Type] Titre de l'issue (#numero)`
 
 ### Body et commentaire d'iteration
 
-Consulte [reference.md](reference.md) pour les templates complets (body PR et commentaire d'iteration).
+Pour rediger le body ou un commentaire d'iteration, utilise Read pour charger `reference.md` et suivre les templates.
 
 ### Regles de formatage MCP GitHub
 

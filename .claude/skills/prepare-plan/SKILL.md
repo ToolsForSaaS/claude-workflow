@@ -47,7 +47,7 @@ A partir de l'issue et de l'exploration du code, comprends precisement :
 
 ## Etape 4 — Produire le plan technique
 
-Consulte [reference.md](reference.md) pour le template de plan complet et les regles de precision.
+Utilise Read pour charger `reference.md` — il contient le template de plan et les regles de precision.
 
 Structure le plan selon le template : vue d'ensemble, approche technique, etapes d'implementation (avec fichiers reels), tests, points d'attention.
 
