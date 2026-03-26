@@ -45,7 +45,7 @@ Si `CLAUDE.md` existe deja, ne le modifie pas.
 
 ## Etape 2 — workflow-config
 
-Si `.claude/skills/workflow-config/SKILL.md` n'existe pas ou contient des placeholders, pose les questions pour le remplir :
+Si `.claude/skills/workflow-config/SKILL.md` n'existe pas, utilise Read pour charger `${CLAUDE_SKILL_DIR}/workflow-config-template.md` comme squelette. Si le fichier existe mais contient des placeholders, pose les questions pour le remplir :
 
 1. **Plateforme Git** : GitHub, GitLab ou Gitea ? (detecte depuis `git remote -v`)
 2. **Issue tracker** : GitHub Issues, Jira, Linear ? (detecte depuis les MCP configures)
@@ -60,7 +60,7 @@ Propose des valeurs detectees automatiquement, demande confirmation, puis ecris 
 
 ## Etape 3 — tech-stack
 
-Si `.claude/skills/tech-stack/SKILL.md` contient des placeholders, propose de les remplir a partir de ce qui a ete detecte a l'etape 2.
+Si `.claude/skills/tech-stack/SKILL.md` n'existe pas, utilise Read pour charger `${CLAUDE_SKILL_DIR}/tech-stack-template.md` comme squelette. Si le fichier contient des placeholders, propose de les remplir a partir de ce qui a ete detecte a l'etape 2.
 
 ## Etape 4 — Hooks
 
