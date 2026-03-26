@@ -1,79 +1,120 @@
 # claude-workflow
 
-Repo central qui contient les skills Claude Code partages entre tous mes projets.
+Plugin Claude Code pour le workflow AI-Driven Development. Fournit un pipeline complet de dev : setup, plan, code, review, test, PR.
 
-Au lieu de dupliquer `.claude/skills/` dans chaque projet, tout est versionne ici et synchronise via un script.
+## Installation
 
-## Structure
+### Test local
+
+```bash
+claude --plugin-dir /chemin/vers/claude-workflow
+```
+
+### Installation projet
+
+Ajouter dans `.claude/settings.json` du projet cible :
+
+```json
+{
+  "plugins": ["/chemin/vers/claude-workflow"]
+}
+```
+
+Les skills sont accessibles avec le namespace `workflow:` (ex: `/workflow:pipe-code`).
+
+## Pipeline
+
+Le workflow suit un pipeline sequentiel. L'humain decide quand passer a l'etape suivante.
+
+```
+/setup → /pipe-hello → /pipe-plan → /pipe-code → /pipe-review → /pipe-test → /pipe-pr → /pipe-notifier
+```
+
+### Demarrage rapide
+
+1. Installer le plugin (voir ci-dessus)
+2. `/workflow:setup` — configure le projet (CLAUDE.md, hooks, workflow-config, tech-stack)
+3. `/workflow:pipe-hello` — briefing de session
+
+## Skills
+
+### Pipeline (`pipe-*`)
+
+| Skill | Description |
+|-------|-------------|
+| `pipe-hello` | Briefing de debut de session |
+| `pipe-plan` | Planifier l'implementation d'une issue |
+| `pipe-code` | Implementer a partir d'un plan |
+| `pipe-review` | Review automatique via sub-agent |
+| `pipe-test` | Tests avec boucle corrective (max 3) |
+| `pipe-commit` | Commit formate selon les conventions |
+| `pipe-pr` | Creer ou mettre a jour une PR |
+| `pipe-notifier` | Notification apres creation de PR |
+
+### Setup (`setup-*`)
+
+| Skill | Description |
+|-------|-------------|
+| `setup` | Configuration complete du projet (one-shot) |
+| `setup-init` | Generer le CLAUDE.md d'un projet |
+| `setup-templates` | Remplir les templates projet-specifiques |
+| `setup-mcp` | Configurer les MCP du projet |
+| `setup-ui-ux` | Generer les conventions UI/UX |
+
+### Creation (`create-*`)
+
+| Skill | Description |
+|-------|-------------|
+| `create-issue` | Issues GitHub structurees avec decoupage |
+| `create-skill` | Creation et audit de skills Claude Code |
+
+### Audit (`audit-*`)
+
+| Skill | Description |
+|-------|-------------|
+| `audit-lint` | Audit lint/format avec recommandations |
+
+### Conventions (non-invocables)
+
+| Skill | Description |
+|-------|-------------|
+| `git-conventions` | Branches, commits, PRs |
+| `frontend-code-conventions` | Architecture frontend |
+| `_workflow-persona` | Persona commune (interne) |
+
+## Structure du plugin
 
 ```
 claude-workflow/
-  .claude/
-    skills/
-      code/SKILL.md               # /code — implementation
-      commit/SKILL.md             # /commit — commit formate
-      create-issue/SKILL.md       # /create-issue — issues GitHub
-      create-pr/SKILL.md          # /create-pr — Pull Requests
-      create-skill/SKILL.md       # /create-skill — creation + audit skills
-      frontend-code-conventions/SKILL.md  # conventions architecture frontend
-      git-conventions/SKILL.md    # conventions branches/commits/PRs
-      init/SKILL.md               # /init — generer CLAUDE.md
-      audit-lint/SKILL.md         # /audit-lint — audit lint/format
-      prepare-plan/SKILL.md       # /prepare-plan — planification
-      setup-mcp/SKILL.md          # /setup-mcp — configurer les MCP
-      setup-ui-ux/SKILL.md        # /setup-ui-ux — generer conventions UI/UX
-      setup-templates/SKILL.md    # /setup-templates — remplir les templates
-      _workflow-persona/SKILL.md  # persona commune aux skills workflow (interne)
-  templates/
-    tech-stack/SKILL.md            # squelette stack + conventions projet-specific
-    CLAUDE-skills-index.md        # index injecte dans le CLAUDE.md des projets
-  sync.sh                         # synchronise un projet
-  sync-all.sh                     # synchronise tous les projets de projects.conf
-  projects.conf                   # liste des projets a synchroniser
+├── .claude-plugin/
+│   └── plugin.json              # manifest du plugin
+└── skills/
+    ├── pipe-code/SKILL.md       # pipeline
+    ├── pipe-review/SKILL.md
+    ├── setup/SKILL.md           # setup + templates de reference
+    ├── create-issue/SKILL.md    # creation
+    ├── audit-lint/SKILL.md      # audit
+    ├── git-conventions/SKILL.md # conventions
+    └── _workflow-persona/SKILL.md # interne
 ```
 
-## Utilisation
+## Fichiers projet-specifiques
 
-### Synchroniser un projet
+Le plugin ne contient aucune info specifique a un projet. Les fichiers suivants vivent dans le `.claude/skills/` du projet cible et sont crees par `/setup` :
 
-```bash
-# Depuis n'importe ou, en passant le chemin du projet
-./sync.sh /path/to/mon-projet
+| Fichier | Role |
+|---------|------|
+| `workflow-config/SKILL.md` | Commandes lint/test/build, plateforme, notifications |
+| `tech-stack/SKILL.md` | Stack technique, conventions de code |
+| `ui-ux/SKILL.md` | Conventions UI/UX (cree par `/setup-ui-ux`) |
 
-# Depuis la racine d'un projet
-/path/to/claude-workflow/sync.sh .
-```
+Ces fichiers ne sont jamais ecrases par une mise a jour du plugin.
 
-Le script :
-- Cree `.claude/skills/` si necessaire
-- Copie les skills partages (ecrase les anciens)
-- Genere les templates **uniquement s'ils n'existent pas encore**
-- Affiche les fichiers mis a jour, ou "Deja a jour" si rien n'a change
+## Migration depuis sync.sh
 
-### Synchroniser tous les projets d'un coup
+Si vous utilisiez `sync.sh` pour distribuer les skills :
 
-```bash
-./sync-all.sh
-```
-
-Lit `projects.conf` et lance `sync.sh` sur chaque projet liste.
-
-### Ajouter un nouveau projet
-
-1. Ajouter le chemin dans `projects.conf`
-2. Lancer `./sync-all.sh`
-3. Personnaliser `.claude/skills/tech-stack/SKILL.md` dans le projet (stack, architecture, nommage)
-
-## Fichiers partages vs projet-specific
-
-| Type | Ou | Exemples | Sync |
-|------|----|----------|------|
-| **Partage** | `claude-workflow/.claude/skills/` | code, commit, create-pr, git-conventions | Ecrase a chaque sync |
-| **Projet-specific** | `.claude/skills/` du projet | tech-stack/SKILL.md | Jamais ecrase (cree une seule fois depuis le template) |
-
-## Workflow de mise a jour
-
-1. Modifier le skill dans `claude-workflow/.claude/skills/`
-2. Commit + push
-3. `./sync-all.sh` pour propager a tous les projets
-4. Commit les fichiers mis a jour dans chaque projet
+1. Supprimer les skills copies dans `.claude/skills/` du projet (ceux qui venaient de sync)
+2. Installer le plugin (voir Installation)
+3. Lancer `/workflow:setup` pour reconfigurer
+4. Les fichiers projet-specifiques (`workflow-config`, `tech-stack`) sont conserves
