@@ -31,8 +31,8 @@ Chaque skill guide vers le skill suivant. Pas de skill monolithique — chaque e
 ## Regles
 
 - Les fichiers dans `skills/` sont **partages** — ils sont distribues via le plugin
-- Les fichiers dans `templates/` sont des squelettes pour les fichiers **projet-specific** — ils ne sont copies que si le repertoire n'existe pas encore dans le projet cible
-- Ne jamais mettre de logique specifique a un projet (stack, architecture) dans les skills partages — ca va dans les templates
+- Les templates projet-specifiques (`workflow-config`, `tech-stack`) sont dans `skills/setup/` comme fichiers de reference, deployes par `/setup`
+- Ne jamais mettre de logique specifique a un projet (stack, architecture) dans les skills partages
 - Chaque skill est un repertoire `nom/SKILL.md` avec frontmatter obligatoire
 - La qualite est garantie par les **hooks** (lint/format) et les **sub-agents** (review), jamais par des instructions au LLM
 - Les references entre skills du plugin utilisent `${CLAUDE_SKILL_DIR}/../autre-skill/`
@@ -43,13 +43,7 @@ Chaque skill guide vers le skill suivant. Pas de skill monolithique — chaque e
 ```
 .claude-plugin/plugin.json    → manifest du plugin
 skills/nom/SKILL.md           → skills distribues via le plugin
-templates/nom/SKILL.md        → copies dans .claude/skills/ du projet cible uniquement si le repertoire n'existe pas
 ```
-
-## Scripts (legacy)
-
-- `sync.sh [path]` — synchronise un projet (defaut: repertoire courant)
-- `sync-all.sh` — synchronise tous les projets listes dans `projects.conf`
 
 ## Conventions
 
