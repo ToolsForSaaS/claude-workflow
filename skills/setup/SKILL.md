@@ -42,8 +42,9 @@ Si `CLAUDE.md` n'existe pas, genere-le avec le strict minimum :
 - Description courte (une phrase)
 - Stack principale (detectee depuis package.json, Cargo.toml, go.mod, etc.)
 - Regles critiques evidentes (monorepo, strict mode, etc.)
+- Section **Git** : utilise Read pour charger `${CLAUDE_SKILL_DIR}/../git-conventions/SKILL.md` et inclure les regles clefs dans le CLAUDE.md (format de commit, format de branche, pas de signature `Co-Authored-By`)
 
-Si `CLAUDE.md` existe deja, ne le modifie pas.
+Si `CLAUDE.md` existe deja, verifie qu'il contient une section Git avec les regles de `git-conventions`. Si elle manque, propose de l'ajouter.
 
 ## Etape 2 — workflow-config
 

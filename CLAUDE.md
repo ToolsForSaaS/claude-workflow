@@ -32,6 +32,10 @@ Chaque skill guide vers le skill suivant. Pas de skill monolithique — chaque e
 - References entre skills du plugin : `${CLAUDE_SKILL_DIR}/../autre-skill/`
 - References aux fichiers projet-specifiques : `.claude/skills/`
 
+## Git
+
+Les conventions git (commits, branches, PRs) sont definies dans `skills/git-conventions/SKILL.md`. Les respecter systematiquement.
+
 ## Conventions
 
 - Nommage : `kebab-case`, chaque skill est un repertoire `nom/SKILL.md`
