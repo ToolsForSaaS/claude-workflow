@@ -128,12 +128,3 @@ Le plugin ne contient aucune info specifique a un projet. Les fichiers suivants 
 | `ui-ux/SKILL.md` | Conventions UI/UX (cree par `/setup-ui-ux`) |
 
 Ces fichiers ne sont jamais ecrases par une mise a jour du plugin.
-
-## Migration depuis sync.sh
-
-Si vous utilisiez `sync.sh` pour distribuer les skills :
-
-1. Supprimer les skills copies dans `.claude/skills/` du projet (ceux qui venaient de sync)
-2. Installer le plugin (voir Installation)
-3. Lancer `/workflow:setup` pour reconfigurer
-4. Les fichiers projet-specifiques (`workflow-config`, `tech-stack`) sont conserves
