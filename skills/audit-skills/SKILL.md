@@ -9,7 +9,7 @@ allowed-tools: Bash(ls *)
 ## Contexte
 
 - Skills projet : !`ls .claude/skills/ 2>/dev/null || echo "Aucun skill projet"`
-- Skills plugin : !`ls ${CLAUDE_SKILL_DIR}/../`
+- Skills plugin : utilise Glob avec le pattern `${CLAUDE_SKILL_DIR}/../*/SKILL.md` pour lister les skills du plugin
 - Hooks : !`ls .claude/settings.json 2>/dev/null || echo "Pas de settings.json"`
 
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
