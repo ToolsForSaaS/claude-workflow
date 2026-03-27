@@ -4,7 +4,9 @@ description: Committer les changements en cours avec un message formate selon le
 argument-hint: [description optionnelle du changement]
 ---
 
-Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../git-conventions/SKILL.md` (section Commits) avant de commencer.
+## Contexte
+
+Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 
@@ -26,6 +28,8 @@ Si des fichiers ne sont pas stages :
 - Demande confirmation si necessaire
 
 ## Etape 2 — Formater le message
+
+Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../git-conventions/SKILL.md` (section Commits).
 
 A partir des changements stages et de l'argument utilisateur (si fourni), determine :
 

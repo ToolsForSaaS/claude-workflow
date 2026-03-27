@@ -4,6 +4,8 @@ description: Creer ou mettre a jour une Pull Request GitHub. Genere titre, descr
 argument-hint: [rien — detecte automatiquement la branche courante]
 ---
 
+## Contexte
+
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 
 ---

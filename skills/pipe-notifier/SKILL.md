@@ -1,8 +1,10 @@
 ---
 name: pipe-notifier
-description: Envoyer une notification apres creation ou mise a jour d'une PR. Utiliser apres /pipe-pr.
+description: Envoyer une notification sur le canal configure (Slack, Discord) apres creation ou mise a jour d'une PR. Recupere les infos et formate le message. Utiliser apres /pipe-pr pour notifier l'equipe.
 argument-hint: [URL de la PR ou rien si detectable depuis la branche]
 ---
+
+## Contexte
 
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 

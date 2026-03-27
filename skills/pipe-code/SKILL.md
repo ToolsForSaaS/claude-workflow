@@ -4,6 +4,8 @@ description: Implementer du code a partir d'un plan ou d'une issue. Cree la bran
 argument-hint: [numero issue ou rien si plan deja present]
 ---
 
+## Contexte
+
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 
 ---
@@ -31,7 +33,7 @@ Si une verification echoue, signale-le clairement et arrete-toi. Ne tente pas de
 
 ## Etape 1 — Creer la branche
 
-Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../git-conventions/SKILL.md` (section Branches) puis cree une branche depuis la **branche par defaut** definie dans `tech-stack` (section Git) en suivant la convention.
+Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../git-conventions/SKILL.md` pour les conventions de branches et commits, puis cree une branche depuis la **branche par defaut** definie dans `tech-stack` (section Git) en suivant la convention.
 
 Annonce la branche creee avant de commencer.
 
@@ -47,7 +49,7 @@ Ne fais PAS de verification de style ou de formatage — c'est le role des hooks
 
 ### Commits atomiques
 
-Chaque etape du plan terminee = un commit. Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../git-conventions/SKILL.md` (section Commits) pour le format.
+Chaque etape du plan terminee = un commit. Suis le format defini dans `git-conventions` (section Commits, deja charge).
 
 ### Progression
 

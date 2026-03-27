@@ -4,7 +4,11 @@ description: Generer ou completer le CLAUDE.md d'un projet avec le contexte mini
 argument-hint: [rien — detecte automatiquement le projet]
 ---
 
-Genere ou complete le CLAUDE.md du projet avec le contexte minimal necessaire pour orienter Claude des le debut. Le detail technique vit dans les skills, pas ici.
+## Contexte
+
+Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
+
+---
 
 ## Etape 0 — Verifications
 

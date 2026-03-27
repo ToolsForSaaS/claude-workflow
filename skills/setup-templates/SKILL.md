@@ -4,7 +4,11 @@ description: Initialiser ou remplir les fichiers templates projet-specific dans 
 argument-hint: [nom du template ou rien pour tous]
 ---
 
-Initialise ou met a jour les fichiers templates projet-specific dans `.claude/skills/`. Detecte automatiquement ce qui est possible et pose des questions pour le reste.
+## Contexte
+
+Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
+
+---
 
 ## Etape 0 — Verifications
 

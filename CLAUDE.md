@@ -6,17 +6,11 @@ Plugin Claude Code pour le workflow AI-Driven Development. Fournit un pipeline c
 
 Ce repo est un **plugin Claude Code** (`name: workflow`). Les skills sont namespaces : `/workflow:pipe-code`, `/workflow:pipe-review`, etc.
 
-### Installation
+Installation : `claude --plugin-dir /chemin/vers/claude-workflow`
 
-Ajouter dans le `settings.json` du projet cible ou tester localement :
+Manifest : `.claude-plugin/plugin.json` (name, version, description, author).
 
-```bash
-claude --plugin-dir /chemin/vers/claude-workflow
-```
-
-### Manifest
-
-`.claude-plugin/plugin.json` definit le plugin (name, version, description, author).
+Structure : `.claude-plugin/plugin.json` (manifest), `skills/nom/SKILL.md` (skills distribues).
 
 ## Pipeline
 
@@ -30,35 +24,18 @@ Chaque skill guide vers le skill suivant. Pas de skill monolithique — chaque e
 
 ## Regles
 
-- Les fichiers dans `skills/` sont **partages** — ils sont distribues via le plugin
-- Les templates projet-specifiques (`workflow-config`, `tech-stack`) sont dans `skills/setup/` comme fichiers de reference, deployes par `/setup`
-- Ne jamais mettre de logique specifique a un projet (stack, architecture) dans les skills partages
+- Les fichiers dans `skills/` sont **partages** — distribues via le plugin
+- Les templates projet-specifiques sont dans `skills/setup/`, deployes par `/setup`
+- Ne jamais mettre de logique specifique a un projet dans les skills partages
 - Chaque skill est un repertoire `nom/SKILL.md` avec frontmatter obligatoire
-- La qualite est garantie par les **hooks** (lint/format) et les **sub-agents** (review), jamais par des instructions au LLM
-- Les references entre skills du plugin utilisent `${CLAUDE_SKILL_DIR}/../autre-skill/`
-- Les references aux fichiers projet-specifiques (`workflow-config`, `tech-stack`, `ui-ux`) restent en `.claude/skills/`
-
-## Structure
-
-```
-.claude-plugin/plugin.json    → manifest du plugin
-skills/nom/SKILL.md           → skills distribues via le plugin
-```
+- La qualite est garantie par les **hooks** et les **sub-agents**, jamais par des instructions au LLM
+- References entre skills du plugin : `${CLAUDE_SKILL_DIR}/../autre-skill/`
+- References aux fichiers projet-specifiques : `.claude/skills/`
 
 ## Conventions
 
 - Nommage : `kebab-case`, chaque skill est un repertoire `nom/SKILL.md`
-- Skills invocables : workflow/action avec `user-invocable: true`
-- Skills expertise : conventions/regles avec `user-invocable: false`
+- Skills invocables : `user-invocable: true` (defaut)
+- Skills expertise : `user-invocable: false`
 - `$ARGUMENTS` toujours en fin de skill invocable
-
-### Convention de nommage des skills
-
-| Prefixe / pattern | Type | Exemples |
-|-------------------|------|----------|
-| `pipe-*` | Etape du pipeline de dev | `pipe-code`, `pipe-review`, `pipe-test`, `pipe-plan` |
-| `create-*` | Cree un artefact (issue, skill) | `create-issue`, `create-skill` |
-| `setup-*` | Configure un aspect du projet (one-shot) | `setup`, `setup-init`, `setup-mcp`, `setup-ui-ux` |
-| `audit-*` | Audite et recommande des corrections | `audit-lint` |
-| `*-conventions` | Expertise passive (non-invocable) | `git-conventions`, `frontend-code-conventions` |
-| `_*` | Skill interne (charge automatiquement, non-invocable) | `_workflow-persona` |
+- Prefixes : `pipe-*` (pipeline), `create-*` (artefacts), `setup-*` (config), `audit-*` (audits), `*-conventions` (expertise), `_*` (interne)

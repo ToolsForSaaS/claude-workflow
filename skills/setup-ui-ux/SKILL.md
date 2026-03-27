@@ -4,6 +4,8 @@ description: Generer les conventions UI/UX specifiques a un projet. Pose des que
 argument-hint: [theme ou vide pour wizard interactif]
 ---
 
+## Contexte
+
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 
 ---

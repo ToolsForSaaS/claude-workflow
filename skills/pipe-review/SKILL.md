@@ -3,6 +3,8 @@ name: pipe-review
 description: Review automatique du code via sub-agent. Verifie patterns, complexite, edge cases et securite. Utiliser apres /pipe-code et avant /pipe-test.
 ---
 
+## Contexte
+
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 
 ---

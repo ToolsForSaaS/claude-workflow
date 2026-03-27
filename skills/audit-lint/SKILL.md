@@ -4,28 +4,32 @@ description: Auditer et configurer le linting/formatting d'un projet TypeScript.
 argument-hint: [biome|eslint|hooks|perf|strict ou rien pour audit complet]
 ---
 
+## Contexte
+
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 
 ---
 
+## Etape 0 — Verifications
+
+Utilise Read pour charger `.claude/skills/tech-stack/SKILL.md` pour comprendre la stack du projet.
+
 ### Si aucun argument — Mode audit complet
 
-Analyse toutes les configs lint/format du projet et produit un rapport complet avec recommandations.
+Analyse toutes les configs lint/format du projet et produit un rapport complet.
 
 ### Si un argument — Mode cible
 
-Focus sur un aspect specifique. Arguments possibles :
-- `biome` — audit de la config Biome uniquement
-- `eslint` — audit de la config ESLint uniquement
+Focus sur un aspect specifique :
+- `biome` — audit de la config Biome
+- `eslint` — audit de la config ESLint
 - `hooks` — audit des pre-commit hooks
 - `perf` — analyse de performance du linting
-- `strict` — audit du niveau de strictness des regles
-
----
+- `strict` — audit du niveau de strictness
 
 ## Etape 1 — Explorer les configs existantes
 
-Utilise Read pour charger `.claude/skills/tech-stack/SKILL.md` pour comprendre la stack du projet, puis scanne pour identifier toutes les configurations lint/format en place :
+Scanne pour identifier toutes les configurations lint/format en place :
 
 - `biome.json` / `biome.jsonc` (racine et workspaces)
 - `eslint.config.mjs` / `.eslintrc.*` (racine et workspaces)
@@ -84,13 +88,7 @@ Pour chaque modification confirmee :
 
 ## Etape 6 — Verifier
 
-Execute le linting pour verifier que tout fonctionne :
-
-```bash
-npx turbo lint
-```
-
-Si des erreurs apparaissent, corrige-les ou signale celles qui necessitent une intervention manuelle.
+Execute le linting pour verifier que tout fonctionne. Si des erreurs apparaissent, corrige-les ou signale celles qui necessitent une intervention manuelle.
 
 Affiche le resultat final :
 
@@ -101,7 +99,7 @@ Affiche le resultat final :
 - [liste des changements]
 
 ### Verification
-- turbo lint : OK / ERREUR
+- Lint : OK / ERREUR
 - Temps d'execution : Xs
 
 ### Prochaines etapes recommandees

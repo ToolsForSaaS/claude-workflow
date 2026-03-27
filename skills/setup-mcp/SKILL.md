@@ -5,6 +5,8 @@ user-invocable: true
 argument-hint: [rien — detecte automatiquement]
 ---
 
+## Contexte
+
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 
 ---

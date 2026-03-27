@@ -3,6 +3,8 @@ name: setup
 description: Configurer un projet pour le workflow AI-Driven Development. Scaffolde CLAUDE.md, workflow-config, hooks, plans et rules en une seule passe. Utiliser sur un nouveau projet ou pour completer une config existante.
 ---
 
+## Contexte
+
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 
 ---
@@ -68,46 +70,11 @@ Utilise Read pour charger `${CLAUDE_SKILL_DIR}/hooks-reference.md` pour les temp
 
 Genere `.claude/settings.json` avec les hooks adaptes au projet. Utilise les commandes definies dans `workflow-config` pour les hooks PostToolUse et Stop.
 
-**Structure a generer :**
+La structure complete des hooks est dans `hooks-reference.md` (deja charge). Genere les 3 types :
 
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[script de blocage des commandes dangereuses]"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[commande de lint/format du projet]"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "[commande de test du projet]"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+- **PreToolUse** (Bash) — bloque les commandes dangereuses
+- **PostToolUse** (Write|Edit) — lint/format automatique avec la commande de `workflow-config`
+- **Stop** — tests avant de terminer
 
 Si un `.claude/settings.json` existe deja, merge les hooks sans ecraser les permissions ou MCP existants.
 
