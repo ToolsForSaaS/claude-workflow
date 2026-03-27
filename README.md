@@ -4,15 +4,28 @@ Plugin Claude Code pour le workflow AI-Driven Development. Fournit un pipeline c
 
 ## Installation
 
-### 1. Cloner le repo
+### Via la marketplace (recommande)
+
+Dans Claude Code :
+
+```
+/plugin marketplace add ToolsForSaaS/claude-workflow
+/plugin install workflow
+```
+
+Puis recharger les plugins :
+
+```
+/reload-plugins
+```
+
+### Via clone local (dev / contribution)
 
 ```bash
 git clone git@github.com:ToolsForSaaS/claude-workflow.git
 ```
 
-### 2. Ajouter le plugin
-
-Dans `.claude/settings.json` du projet cible :
+Puis dans `.claude/settings.json` du projet cible :
 
 ```json
 {
