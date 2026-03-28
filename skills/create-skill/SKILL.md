@@ -3,13 +3,12 @@ name: create-skill
 description: Concevoir et modifier des skills Claude Code. Utiliser pour creer un nouveau skill ou modifier un existant en respectant les bonnes pratiques.
 user-invocable: true
 argument-hint: [description du skill a creer]
-allowed-tools: Bash(ls *)
 ---
 
 ## Contexte
 
 - Skills projet : !`ls .claude/skills/`
-- Skills plugin : !`ls ${CLAUDE_SKILL_DIR}/../`
+- Skills plugin : utilise Glob avec pattern `*/SKILL.md` dans `${CLAUDE_SKILL_DIR}/../` pour lister les skills disponibles
 
 Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../_workflow-persona/SKILL.md` avant de commencer.
 
