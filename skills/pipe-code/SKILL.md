@@ -33,7 +33,19 @@ Si une verification echoue, signale-le clairement et arrete-toi. Ne tente pas de
 
 ## Etape 1 — Creer la branche
 
-Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../git-conventions/SKILL.md` pour les conventions de branches et commits, puis cree une branche depuis la **branche par defaut** definie dans `tech-stack` (section Git) en suivant la convention.
+Utilise Read pour charger `${CLAUDE_SKILL_DIR}/../git-conventions/SKILL.md` pour les conventions de branches et commits.
+
+Identifie la branche par defaut depuis le skill `tech-stack` (deja lu a l'etape 0, section Git, champ "Branche par defaut"). Stocke-la mentalement comme `BASE_BRANCH`.
+
+Execute exactement cette sequence :
+
+1. `git checkout <BASE_BRANCH>`
+2. `git pull origin <BASE_BRANCH>`
+3. `git checkout -b <nouvelle-branche>`
+
+Ou `<nouvelle-branche>` suit la convention definie dans `git-conventions`.
+
+Ne jamais hardcoder `main` ou `develop` — toujours lire la valeur depuis `tech-stack`.
 
 Annonce la branche creee avant de commencer.
 
