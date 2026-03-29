@@ -1,6 +1,7 @@
 ---
 name: setup
 description: Configurer un projet pour le workflow AI-Driven Development. Scaffolde CLAUDE.md, workflow-config, hooks, plans et rules en une seule passe. Utiliser sur un nouveau projet ou pour completer une config existante.
+model: sonnet
 ---
 
 ## Contexte

@@ -1,6 +1,7 @@
 ---
 name: audit-skills
 description: Auditer un projet selon la grille AI-Driven Development (7 axes, scoring 1-10). Evaluer skills, CLAUDE.md, hooks, conventions et workflow. Utiliser avec "audit" pour lancer une evaluation complete.
+model: sonnet
 user-invocable: true
 argument-hint: [audit | audit commandes | audit workflow | audit skills]
 ---

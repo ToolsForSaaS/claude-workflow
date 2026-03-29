@@ -1,6 +1,7 @@
 ---
 name: setup-templates
 description: Initialiser ou remplir les fichiers templates projet-specific dans .claude/skills/. Detecte les placeholders et propose des valeurs. Utiliser apres /setup pour configurer les conventions du projet.
+model: sonnet
 argument-hint: [nom du template ou rien pour tous]
 ---
 

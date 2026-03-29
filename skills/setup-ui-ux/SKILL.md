@@ -1,6 +1,7 @@
 ---
 name: setup-ui-ux
 description: Generer les conventions UI/UX specifiques a un projet. Pose des questions puis cree .claude/skills/ui-ux/SKILL.md avec les preferences visuelles, layouts, patterns d'interaction et composants. Utiliser une fois par projet pour definir l'identite UI.
+model: sonnet
 argument-hint: [theme ou vide pour wizard interactif]
 ---
 

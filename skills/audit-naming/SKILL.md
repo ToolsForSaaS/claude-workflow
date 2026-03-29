@@ -1,6 +1,7 @@
 ---
 name: audit-naming
 description: Auditer les conventions de nommage d'un projet via sub-agent. Verifie fichiers, dossiers, variables, fonctions, classes/types. Utiliser pour detecter les noms ambigus, incoherents ou non-conformes.
+model: sonnet
 user-invocable: true
 argument-hint: [chemin/scope ou rien pour audit complet]
 ---

@@ -1,6 +1,7 @@
 ---
 name: audit-lint
 description: Auditer et configurer le linting/formatting d'un projet TypeScript. Analyse les configs existantes, recommande les outils modernes (Biome, ESLint flat config), et applique les corrections.
+model: sonnet
 argument-hint: [biome|eslint|hooks|perf|strict ou rien pour audit complet]
 ---
 

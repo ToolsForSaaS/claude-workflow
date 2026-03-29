@@ -1,6 +1,7 @@
 ---
 name: pipe-changelog
 description: Generer ou mettre a jour le CHANGELOG.md depuis les commits/tags. Analyse les changements depuis la derniere version et respecte Keep a Changelog + SemVer. Utiliser apres /pipe-test et avant /pipe-pr.
+model: sonnet
 argument-hint: [version a tagger ou rien pour Unreleased]
 ---
 
