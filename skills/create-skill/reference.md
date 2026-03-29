@@ -97,7 +97,7 @@ Si omis : pas de recommandation (le modele de la session est utilise).
 ### Comportement
 
 - **Skills inline** (sans `context: fork`) : le champ sert de **recommandation** pour l'utilisateur. Claude Code ne force pas le modele automatiquement — l'utilisateur choisit de switcher avant d'invoquer.
-- **Skills avec `context: fork`** : le champ controle le modele du sub-agent.
+- **Skills avec `context: fork`** : le champ controle le modele du sub-agent. Note : le type d'agent (`Explore`, `Plan`) peut fixer son propre modele (ex. `Explore` utilise Haiku). Dans ce cas, le type d'agent a la precedence sur `model`.
 - **Sub-agents lances par le skill** (via Agent tool) : le skill peut passer `model: "sonnet"` ou `model: "haiku"` dans l'appel Agent pour controler le cout des sous-taches.
 
 ### Criteres de choix
