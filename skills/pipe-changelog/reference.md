@@ -81,8 +81,8 @@ Chaque entree de changelog inclut des references tracables entre parentheses en 
 
 Les references apparaissent entre parentheses, separees par des virgules, dans cet ordre :
 
-1. **Issues resolues** — `#N` (optionnel, present si detecte via mots-cles `closes`, `fixes`, `resolves`)
-2. **PR associee** — `#N` (optionnel, present si detecte)
+1. **Issues resolues** — `#N` (optionnel, present si detecte via mots-cles `close(s|d)`, `fix(es|ed)`, `resolve(s|d)`)
+2. **PR associee** — `PR #N` (optionnel, present si detecte). Le prefixe `PR` distingue la PR des issues.
 3. **SHA court** — `abc1234` (obligatoire, toujours present)
 
 Omettre les elements non detectes. Le SHA court est le seul element obligatoire.
@@ -90,7 +90,7 @@ Omettre les elements non detectes. Le SHA court est le seul element obligatoire.
 ### Exemples
 
 ```markdown
-- Ajouter le support multi-langue (#12, #15, abc1234)
+- Ajouter le support multi-langue (#12, PR #15, abc1234)
 ```
 Issue #12 resolue, PR #15, commit abc1234.
 
@@ -100,7 +100,7 @@ Issue #12 resolue, PR #15, commit abc1234.
 Pas de PR ni d'issue detectee, uniquement le SHA court.
 
 ```markdown
-- Refactorer le module auth (#8, 9a8b7c6)
+- Refactorer le module auth (PR #8, 9a8b7c6)
 ```
 PR #8, pas d'issue resolue, SHA 9a8b7c6.
 
