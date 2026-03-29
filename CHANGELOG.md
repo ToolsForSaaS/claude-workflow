@@ -20,29 +20,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Skill `/audit-naming` pour auditer les conventions de nommage du projet avec référentiel dédié
-- Intégration du référentiel audit-naming dans `/pipe-review`
-- Skill `/pipe-changelog` pour générer et maintenir le CHANGELOG avec référentiel de conventions
+- Skill `/audit-naming` pour auditer les conventions de nommage du projet avec référentiel dédié (#14, PR #15, 98f0c8f)
+- Intégration du référentiel audit-naming dans `/pipe-review` (#14, PR #15, fb87edf)
+- Skill `/pipe-changelog` pour générer et maintenir le CHANGELOG avec référentiel de conventions (#16, PR #17, b606aa7)
 
 ### Changed
 
-- Chaînage du pipeline : `/pipe-test` → `/pipe-changelog` → `/pipe-pr`
+- Chaînage du pipeline : `/pipe-test` → `/pipe-changelog` → `/pipe-pr` (#16, PR #17, 8c88aa8)
 
 ### Fixed
 
-- Séquence git explicite dans `/pipe-code` pour la création de branche
+- Séquence git explicite dans `/pipe-code` pour la création de branche (PR #13, 4b4779b)
 
 ## [1.2.4] - 2026-03-28
 
 ### Fixed
 
-- Compatibilité sandbox : remplacement de tous les `ls` inline par `Glob/Read` dans l'ensemble des skills
+- Compatibilité sandbox : remplacement de tous les `ls` inline par `Glob/Read` dans l'ensemble des skills (4e3b0a4)
 
 ## [1.2.3] - 2026-03-28
 
 ### Fixed
 
-- Compatibilité sandbox : remplacement de `ls` par `Glob` dans `/create-skill`
+- Compatibilité sandbox : remplacement de `ls` par `Glob` dans `/create-skill` (52ee483)
 
 ## [1.2.2] - 2026-03-27
 
@@ -50,40 +50,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Skill `/setup-init` supprimé (fonctionnalité intégrée dans `/setup`)
+- Skill `/setup-init` supprimé (fonctionnalité intégrée dans `/setup`) (a7bb330)
 
 ## [1.2.0] - 2026-03-27
 
 ### Changed
 
-- Conformité de tous les skills au template canonique unifié
+- Conformité de tous les skills au template canonique unifié (37013b6)
 
 ### Fixed
 
-- Compatibilité sandbox : remplacement de `ls` par `Glob` dans `/audit-skills`
+- Compatibilité sandbox : remplacement de `ls` par `Glob` dans `/audit-skills` (72e5f8c)
 
 ## [1.1.0] - 2026-03-27
 
 ### Added
 
-- Pattern sub-agents dans `/create-skill` pour analyse multi-fichiers
-- Skill `/audit-skills` extrait de `/create-skill` pour évaluer la maturité AI-Driven Development
+- Pattern sub-agents dans `/create-skill` pour analyse multi-fichiers (81c5cda)
+- Skill `/audit-skills` extrait de `/create-skill` pour évaluer la maturité AI-Driven Development (20088cc)
 
 ## [1.0.0] - 2026-03-27
 
 ### Added
 
-- Pipeline AI-Driven Development : `/pipe-hello` → `/pipe-plan` → `/pipe-code` → `/pipe-review` → `/pipe-test` → `/pipe-pr` → `/pipe-notifier`
-- Skill `/setup` pour configurer un projet complet
-- Skill `/setup-mcp` pour configurer les serveurs MCP avec catalogue de référence
-- Skill `/setup-templates` pour initialiser les templates projet-spécifiques
-- Skill `/setup-ui-ux` pour générer les conventions UI/UX
-- Skill `/create-skill` pour créer de nouveaux skills au format `directory/SKILL.md`
-- Conventions frontend (`/frontend-code-conventions`) et git (`/git-conventions`)
-- Architecture plugin avec manifest `plugin.json` et skills distribués
-- Template canonique unifié pour les skills avec chargement progressif
-- Préfixage des skills par catégorie (`pipe-*`, `create-*`, `setup-*`, `audit-*`)
-- Installation via marketplace
+- Pipeline AI-Driven Development : `/pipe-hello` → `/pipe-plan` → `/pipe-code` → `/pipe-review` → `/pipe-test` → `/pipe-pr` → `/pipe-notifier` (60bcaba)
+- Skill `/setup` pour configurer un projet complet (#5, PR #9, 699e585)
+- Skill `/setup-mcp` pour configurer les serveurs MCP avec catalogue de référence (#1, PR #2, 667604f)
+- Skill `/setup-templates` pour initialiser les templates projet-spécifiques (9f156fd)
+- Skill `/setup-ui-ux` pour générer les conventions UI/UX (#1, PR #2, 00d17bb)
+- Skill `/create-skill` pour créer de nouveaux skills au format `directory/SKILL.md` (9e23bf6)
+- Conventions frontend (`/frontend-code-conventions`) et git (`/git-conventions`) (00d17bb)
+- Architecture plugin avec manifest `plugin.json` et skills distribués (#3, PR #7, c201bf6)
+- Template canonique unifié pour les skills avec chargement progressif (843c650)
+- Préfixage des skills par catégorie (`pipe-*`, `create-*`, `setup-*`, `audit-*`) (#4, PR #8, 0835efc)
+- Installation via marketplace (951edeb)
 
 [Unreleased]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.0...HEAD
 [1.3.0]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.2.4...v1.3.0
