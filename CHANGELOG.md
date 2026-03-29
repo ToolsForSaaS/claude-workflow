@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.3](https://github.com/ToolsForSaaS/claude-workflow/releases/tag/v1.3.3) - 2026-03-29
+
 ### Fixed
 
-- Les en-têtes de version dans CHANGELOG.md sont maintenant liés au tag git correspondant quand il existe ([#22](https://github.com/ToolsForSaaS/claude-workflow/issues/22))
+- Les en-têtes de version dans CHANGELOG.md sont maintenant liés au tag git correspondant quand il existe ([#23](https://github.com/ToolsForSaaS/claude-workflow/pull/23))
 
-## [1.3.2] - 2026-03-29
+## [1.3.2](https://github.com/ToolsForSaaS/claude-workflow/releases/tag/v1.3.2) - 2026-03-29
 
 ### Added
 
@@ -96,7 +98,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Préfixage des skills par catégorie (`pipe-*`, `create-*`, `setup-*`, `audit-*`) ([#8](https://github.com/ToolsForSaaS/claude-workflow/pull/8))
 - Installation via marketplace ([`951edeb`](https://github.com/ToolsForSaaS/claude-workflow/commit/951edeb))
 
-[Unreleased]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.2...HEAD
+[Unreleased]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.3...HEAD
+[1.3.3]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.2.4...v1.3.0
