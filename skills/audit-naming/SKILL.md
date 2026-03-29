@@ -1,6 +1,7 @@
 ---
 name: audit-naming
 description: Auditer les conventions de nommage d'un projet via sub-agent. Verifie fichiers, dossiers, variables, fonctions, classes/types. Utiliser pour detecter les noms ambigus, incoherents ou non-conformes.
+model: sonnet
 user-invocable: true
 argument-hint: [chemin/scope ou rien pour audit complet]
 ---
@@ -37,7 +38,7 @@ Verifie qu'il y a au moins un fichier source dans le projet (Glob `**/*.{ts,js,p
 
 Utilise Read pour charger `reference.md` (referentiel de conventions).
 
-Lance un sub-agent (`Agent` tool, type `general-purpose`) avec le prompt suivant. Injecte dans le prompt :
+Lance un sub-agent (`Agent` tool, type `general-purpose`, model `sonnet`) avec le prompt suivant. Injecte dans le prompt :
 - Le referentiel de conventions (contenu de reference.md)
 - Le(s) langage(s) detecte(s) et les conventions de casse applicables
 - Les conventions projet-specific si trouvees a l'etape 1

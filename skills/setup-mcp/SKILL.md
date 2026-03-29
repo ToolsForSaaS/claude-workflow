@@ -1,6 +1,7 @@
 ---
 name: setup-mcp
 description: Generer un .mcp.exemple.json de reference avec detection automatique des MCP utilises. Utiliser pour configurer les MCP necessaires au projet.
+model: sonnet
 user-invocable: true
 argument-hint: [rien — detecte automatiquement]
 ---

@@ -43,3 +43,4 @@ Les conventions git (commits, branches, PRs) sont definies dans `skills/git-conv
 - Skills expertise : `user-invocable: false`
 - `$ARGUMENTS` toujours en fin de skill invocable
 - Prefixes : `pipe-*` (pipeline), `create-*` (artefacts), `setup-*` (config), `audit-*` (audits), `*-conventions` (expertise), `_*` (interne)
+- Chaque skill declare un `model` dans son frontmatter : `opus` (complexe), `sonnet` (standard), `haiku` (simple). Voir `skills/create-skill/reference.md` section `model` pour la grille complete.
