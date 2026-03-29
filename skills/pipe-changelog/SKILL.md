@@ -29,7 +29,7 @@ Recupere les informations necessaires :
 5. **Tags existants** — pour chaque version presente dans CHANGELOG.md (hors `[Unreleased]`) et pour la version cible, verifier si le tag existe :
    - `git tag --list "v${version}"` → si resultat non vide, le tag `v${version}` existe
    - `git tag --list "${version}"` → fallback sans prefixe `v`
-   - Construire un map `{ version → tagRef | null }` utilise a l'etape 3 pour generer les en-tetes de version
+   - Construire un map `{ version → nom du tag tel que matche (ex: "v1.3.2") | null }` utilise a l'etape 3 pour generer les en-tetes de version
 
 Affiche le contexte detecte :
 

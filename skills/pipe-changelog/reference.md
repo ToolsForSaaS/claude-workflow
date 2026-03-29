@@ -16,9 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.0] - 2026-03-29
-## [1.1.0] - 2026-02-14
-## [1.0.0] - 2026-01-01
+## [1.2.0](https://github.com/org/repo/releases/tag/v1.2.0) - 2026-03-29
+## [1.1.0](https://github.com/org/repo/releases/tag/v1.1.0) - 2026-02-14
+## [1.0.0](https://github.com/org/repo/releases/tag/v1.0.0) - 2026-01-01
 
 [Unreleased]: https://github.com/org/repo/compare/v1.2.0...HEAD
 [1.2.0]: https://github.com/org/repo/compare/v1.1.0...v1.2.0
