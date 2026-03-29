@@ -9,28 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Références traçables dans les entrées de changelog : SHA court, PR et issues résolues en fin de ligne ([#18](https://github.com/ToolsForSaaS/claude-workflow/issues/18), [PR #19](https://github.com/ToolsForSaaS/claude-workflow/pull/19), [`81ff178`](https://github.com/ToolsForSaaS/claude-workflow/commit/81ff178))
-
-### Changed
-
-- Détection élargie des mots-clés GitHub pour les issues résolues : `close(s|d)`, `fix(es|ed)`, `resolve(s|d)` ([#18](https://github.com/ToolsForSaaS/claude-workflow/issues/18), [PR #19](https://github.com/ToolsForSaaS/claude-workflow/pull/19), [`3d2c7ef`](https://github.com/ToolsForSaaS/claude-workflow/commit/3d2c7ef))
-- Préfixe `PR #N` pour distinguer les PR des issues dans les références ([#18](https://github.com/ToolsForSaaS/claude-workflow/issues/18), [PR #19](https://github.com/ToolsForSaaS/claude-workflow/pull/19), [`3d2c7ef`](https://github.com/ToolsForSaaS/claude-workflow/commit/3d2c7ef))
+- Références traçables dans les entrées de changelog avec liens cliquables vers la PR ou le commit source ([#19](https://github.com/ToolsForSaaS/claude-workflow/pull/19))
 
 ## [1.3.0] - 2026-03-29
 
 ### Added
 
-- Skill `/audit-naming` pour auditer les conventions de nommage du projet avec référentiel dédié ([#14](https://github.com/ToolsForSaaS/claude-workflow/issues/14), [PR #15](https://github.com/ToolsForSaaS/claude-workflow/pull/15), [`98f0c8f`](https://github.com/ToolsForSaaS/claude-workflow/commit/98f0c8f))
-- Intégration du référentiel audit-naming dans `/pipe-review` ([#14](https://github.com/ToolsForSaaS/claude-workflow/issues/14), [PR #15](https://github.com/ToolsForSaaS/claude-workflow/pull/15), [`fb87edf`](https://github.com/ToolsForSaaS/claude-workflow/commit/fb87edf))
-- Skill `/pipe-changelog` pour générer et maintenir le CHANGELOG avec référentiel de conventions ([#16](https://github.com/ToolsForSaaS/claude-workflow/issues/16), [PR #17](https://github.com/ToolsForSaaS/claude-workflow/pull/17), [`b606aa7`](https://github.com/ToolsForSaaS/claude-workflow/commit/b606aa7))
+- Skill `/audit-naming` pour auditer les conventions de nommage du projet avec référentiel dédié ([#15](https://github.com/ToolsForSaaS/claude-workflow/pull/15))
+- Intégration du référentiel audit-naming dans `/pipe-review` ([#15](https://github.com/ToolsForSaaS/claude-workflow/pull/15))
+- Skill `/pipe-changelog` pour générer et maintenir le CHANGELOG avec référentiel de conventions ([#17](https://github.com/ToolsForSaaS/claude-workflow/pull/17))
 
 ### Changed
 
-- Chaînage du pipeline : `/pipe-test` → `/pipe-changelog` → `/pipe-pr` ([#16](https://github.com/ToolsForSaaS/claude-workflow/issues/16), [PR #17](https://github.com/ToolsForSaaS/claude-workflow/pull/17), [`8c88aa8`](https://github.com/ToolsForSaaS/claude-workflow/commit/8c88aa8))
+- Chaînage du pipeline : `/pipe-test` → `/pipe-changelog` → `/pipe-pr` ([#17](https://github.com/ToolsForSaaS/claude-workflow/pull/17))
 
 ### Fixed
 
-- Séquence git explicite dans `/pipe-code` pour la création de branche ([PR #13](https://github.com/ToolsForSaaS/claude-workflow/pull/13), [`4b4779b`](https://github.com/ToolsForSaaS/claude-workflow/commit/4b4779b))
+- Séquence git explicite dans `/pipe-code` pour la création de branche ([#13](https://github.com/ToolsForSaaS/claude-workflow/pull/13))
 
 ## [1.2.4] - 2026-03-28
 
@@ -74,15 +69,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Pipeline AI-Driven Development : `/pipe-hello` → `/pipe-plan` → `/pipe-code` → `/pipe-review` → `/pipe-test` → `/pipe-pr` → `/pipe-notifier` ([`60bcaba`](https://github.com/ToolsForSaaS/claude-workflow/commit/60bcaba))
-- Skill `/setup` pour configurer un projet complet ([#5](https://github.com/ToolsForSaaS/claude-workflow/issues/5), [PR #9](https://github.com/ToolsForSaaS/claude-workflow/pull/9), [`699e585`](https://github.com/ToolsForSaaS/claude-workflow/commit/699e585))
-- Skill `/setup-mcp` pour configurer les serveurs MCP avec catalogue de référence ([#1](https://github.com/ToolsForSaaS/claude-workflow/issues/1), [PR #2](https://github.com/ToolsForSaaS/claude-workflow/pull/2), [`667604f`](https://github.com/ToolsForSaaS/claude-workflow/commit/667604f))
+- Skill `/setup` pour configurer un projet complet ([#9](https://github.com/ToolsForSaaS/claude-workflow/pull/9))
+- Skill `/setup-mcp` pour configurer les serveurs MCP avec catalogue de référence ([#2](https://github.com/ToolsForSaaS/claude-workflow/pull/2))
 - Skill `/setup-templates` pour initialiser les templates projet-spécifiques ([`9f156fd`](https://github.com/ToolsForSaaS/claude-workflow/commit/9f156fd))
-- Skill `/setup-ui-ux` pour générer les conventions UI/UX ([#1](https://github.com/ToolsForSaaS/claude-workflow/issues/1), [PR #2](https://github.com/ToolsForSaaS/claude-workflow/pull/2), [`00d17bb`](https://github.com/ToolsForSaaS/claude-workflow/commit/00d17bb))
+- Skill `/setup-ui-ux` pour générer les conventions UI/UX ([#2](https://github.com/ToolsForSaaS/claude-workflow/pull/2))
 - Skill `/create-skill` pour créer de nouveaux skills au format `directory/SKILL.md` ([`9e23bf6`](https://github.com/ToolsForSaaS/claude-workflow/commit/9e23bf6))
 - Conventions frontend (`/frontend-code-conventions`) et git (`/git-conventions`) ([`00d17bb`](https://github.com/ToolsForSaaS/claude-workflow/commit/00d17bb))
-- Architecture plugin avec manifest `plugin.json` et skills distribués ([#3](https://github.com/ToolsForSaaS/claude-workflow/issues/3), [PR #7](https://github.com/ToolsForSaaS/claude-workflow/pull/7), [`c201bf6`](https://github.com/ToolsForSaaS/claude-workflow/commit/c201bf6))
+- Architecture plugin avec manifest `plugin.json` et skills distribués ([#7](https://github.com/ToolsForSaaS/claude-workflow/pull/7))
 - Template canonique unifié pour les skills avec chargement progressif ([`843c650`](https://github.com/ToolsForSaaS/claude-workflow/commit/843c650))
-- Préfixage des skills par catégorie (`pipe-*`, `create-*`, `setup-*`, `audit-*`) ([#4](https://github.com/ToolsForSaaS/claude-workflow/issues/4), [PR #8](https://github.com/ToolsForSaaS/claude-workflow/pull/8), [`0835efc`](https://github.com/ToolsForSaaS/claude-workflow/commit/0835efc))
+- Préfixage des skills par catégorie (`pipe-*`, `create-*`, `setup-*`, `audit-*`) ([#8](https://github.com/ToolsForSaaS/claude-workflow/pull/8))
 - Installation via marketplace ([`951edeb`](https://github.com/ToolsForSaaS/claude-workflow/commit/951edeb))
 
 [Unreleased]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.0...HEAD

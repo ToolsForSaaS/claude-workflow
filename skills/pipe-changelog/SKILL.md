@@ -50,12 +50,11 @@ Utilise Read pour charger `reference.md` (referentiel de conventions et mapping 
    - Typos de commentaires ou docs internes
 3. **Detecter les changesets** — si `.changeset/` existe et contient des fichiers `.md`, les utiliser comme source primaire au lieu des commits
 4. **Classer par type** — utiliser le mapping prefixe → type CHANGELOG du referentiel
-5. **Enrichir avec les references** — pour chaque commit retenu, collecter les references tracables :
-   - **SHA court** : deja recupere via `%h` (obligatoire, toujours present)
-   - **PR associee** : utiliser `gh pr list --state merged --search "SHA" --json number --jq '.[0].number'` pour trouver la PR qui a merge ce commit. Si pas de resultat, pas de reference PR.
-   - **Issues resolues** : chercher les mots-cles `close(s|d) #X`, `fix(es|ed) #X`, `resolve(s|d) #X` (case-insensitive) dans le message de commit ET dans le body de la PR (si PR trouvee, via `gh pr view N --json body`). Extraire les numeros d'issues.
-   - Si `gh` echoue ou est indisponible, continuer avec le SHA seul — ne pas bloquer la generation.
-6. **Reformuler** — chaque entree est redigee pour le consommateur, pas copiee du message de commit. Terminer chaque entree par les references entre parentheses avec des liens Markdown explicites selon le format defini dans `reference.md` (section "References dans les entrees"). GitHub n'auto-link pas les references dans les fichiers `.md` — utiliser systematiquement `[texte](url)`. L'URL de base du remote est detectee a l'etape 1.
+5. **Enrichir avec les references** — pour chaque commit retenu, trouver la PR associee :
+   - Utiliser `gh pr list --state merged --search "SHA" --json number --jq '.[0].number'` pour trouver la PR qui a merge ce commit.
+   - Si une PR est trouvee, c'est la reference de l'entree. Si pas de PR (commit direct), utiliser le SHA court en fallback.
+   - Si `gh` echoue ou est indisponible, utiliser le SHA seul — ne pas bloquer la generation.
+6. **Reformuler** — chaque entree est redigee pour le consommateur, pas copiee du message de commit. Terminer chaque entree par la reference entre parentheses avec un lien Markdown explicite selon le format defini dans `reference.md` (section "References dans les entrees"). L'URL de base du remote est detectee a l'etape 1.
 
 Affiche les entrees classees avant de continuer :
 
@@ -63,10 +62,10 @@ Affiche les entrees classees avant de continuer :
 Changements detectes :
 
 ### Added
-- [entree reformulee] ([#12](url/issues/12), [PR #15](url/pull/15), [`abc1234`](url/commit/abc1234))
+- [entree reformulee] ([#15](url/pull/15))
 
 ### Changed
-- [entree reformulee] ([PR #8](url/pull/8), [`def5678`](url/commit/def5678))
+- [entree reformulee] ([#8](url/pull/8))
 
 ### Fixed
 - [entree reformulee] ([`9a8b7c6`](url/commit/9a8b7c6))

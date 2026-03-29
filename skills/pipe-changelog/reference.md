@@ -69,42 +69,34 @@ Cas speciaux (detectes par le contenu du commit, pas par le prefixe seul) :
 
 ## References dans les entrees
 
-Chaque entree de changelog inclut des references tracables entre parentheses en fin de ligne. Cela permet de remonter a l'origine d'un changement.
+Chaque entree de changelog inclut une reference tracable entre parentheses en fin de ligne. Cela permet de remonter a l'origine d'un changement.
+
+### Regle
+
+- **Si une PR existe** : lier la PR. C'est la reference principale — elle contient le contexte, les commits et les issues liees.
+- **Si pas de PR** (commit direct) : lier le SHA court en fallback.
+
+Une seule reference par entree. Pas besoin de doublonner PR + SHA + issue.
 
 ### Format
 
 ```
-- Texte reformule (references)
+- Texte reformule ([#N](url))
 ```
 
-### Ordre des references
-
-Les references apparaissent entre parentheses, separees par des virgules, dans cet ordre :
-
-1. **Issues resolues** — `[#N](https://github.com/OWNER/REPO/issues/N)` (optionnel, present si detecte via mots-cles `close(s|d)`, `fix(es|ed)`, `resolve(s|d)`)
-2. **PR associee** — `[PR #N](https://github.com/OWNER/REPO/pull/N)` (optionnel, present si detecte). Le prefixe `PR` distingue la PR des issues.
-3. **SHA court** — `` [`abc1234`](https://github.com/OWNER/REPO/commit/abc1234) `` (obligatoire, toujours present)
-
-Omettre les elements non detectes. Le SHA court est le seul element obligatoire.
-
-**Important** : GitHub n'auto-link pas les references (`#N`, SHA) dans les fichiers `.md` du depot. Il faut systematiquement utiliser des liens Markdown explicites `[texte](url)`. L'URL du remote est detectee a l'etape 1 du skill.
+**Important** : GitHub n'auto-link pas les references dans les fichiers `.md` du depot. Il faut systematiquement utiliser des liens Markdown explicites `[texte](url)`. L'URL du remote est detectee a l'etape 1 du skill.
 
 ### Exemples
 
 ```markdown
-- Ajouter le support multi-langue ([#12](https://github.com/org/repo/issues/12), [PR #15](https://github.com/org/repo/pull/15), [`abc1234`](https://github.com/org/repo/commit/abc1234))
+- Ajouter le support multi-langue ([#15](https://github.com/org/repo/pull/15))
 ```
-Issue #12 resolue, PR #15, commit abc1234.
+PR #15 — le lecteur y trouvera les commits, l'issue liee et le contexte.
 
 ```markdown
 - Corriger le parsing des dates ([`def5678`](https://github.com/org/repo/commit/def5678))
 ```
-Pas de PR ni d'issue detectee, uniquement le SHA court.
-
-```markdown
-- Refactorer le module auth ([PR #8](https://github.com/org/repo/pull/8), [`9a8b7c6`](https://github.com/org/repo/commit/9a8b7c6))
-```
-PR #8, pas d'issue resolue, SHA 9a8b7c6.
+Commit direct, pas de PR — SHA court en fallback.
 
 ## Versioning
 
