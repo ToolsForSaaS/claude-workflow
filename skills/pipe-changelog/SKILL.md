@@ -55,7 +55,7 @@ Utilise Read pour charger `reference.md` (referentiel de conventions et mapping 
    - **PR associee** : utiliser `gh pr list --state merged --search "SHA" --json number --jq '.[0].number'` pour trouver la PR qui a merge ce commit. Si pas de resultat, pas de reference PR.
    - **Issues resolues** : chercher les mots-cles `close(s|d) #X`, `fix(es|ed) #X`, `resolve(s|d) #X` (case-insensitive) dans le message de commit ET dans le body de la PR (si PR trouvee, via `gh pr view N --json body`). Extraire les numeros d'issues.
    - Si `gh` echoue ou est indisponible, continuer avec le SHA seul — ne pas bloquer la generation.
-6. **Reformuler** — chaque entree est redigee pour le consommateur, pas copiee du message de commit. Terminer chaque entree par les references entre parentheses selon le format defini dans `reference.md` (section "References dans les entrees") : `(#issue, PR #N, SHA)` — omettre les elements non detectes, SHA toujours present. Le prefixe `PR` distingue la PR des issues.
+6. **Reformuler** — chaque entree est redigee pour le consommateur, pas copiee du message de commit. Terminer chaque entree par les references entre parentheses avec des liens Markdown explicites selon le format defini dans `reference.md` (section "References dans les entrees"). GitHub n'auto-link pas les references dans les fichiers `.md` — utiliser systematiquement `[texte](url)`. L'URL de base du remote est detectee a l'etape 1.
 
 Affiche les entrees classees avant de continuer :
 
@@ -63,13 +63,13 @@ Affiche les entrees classees avant de continuer :
 Changements detectes :
 
 ### Added
-- [entree reformulee] (#12, PR #15, abc1234)
+- [entree reformulee] ([#12](url/issues/12), [PR #15](url/pull/15), [`abc1234`](url/commit/abc1234))
 
 ### Changed
-- [entree reformulee] (PR #8, def5678)
+- [entree reformulee] ([PR #8](url/pull/8), [`def5678`](url/commit/def5678))
 
 ### Fixed
-- [entree reformulee] (9a8b7c6)
+- [entree reformulee] ([`9a8b7c6`](url/commit/9a8b7c6))
 
 [N] commits exclus (merges, fixups, CI...)
 ```
