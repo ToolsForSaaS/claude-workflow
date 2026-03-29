@@ -116,6 +116,20 @@ Plage `0.y.z` — semantique SemVer adaptee pour phase dev :
 
 En `0.x`, le MAJOR est implicitement instable — le MINOR joue le role du MAJOR.
 
+## En-tetes de version
+
+Le numero de version dans l'en-tete de section est un lien inline vers le tag git **si et seulement si ce tag existe**.
+
+Verification : `git tag --list "v${version}"` (puis `git tag --list "${version}"` en fallback sans prefixe `v`).
+
+Format :
+- Tag existant : `## [1.3.2](https://github.com/org/repo/releases/tag/v1.3.2) - 2026-03-29`
+- Tag absent  : `## [1.4.0] - 2026-03-29`
+
+L'URL suit le pattern : `https://github.com/{owner}/{repo}/releases/tag/{tag}` (avec le prefixe `v` qui a matche).
+
+`[Unreleased]` n'est jamais linke — aucun tag ne correspond.
+
 ## Liens de comparaison
 
 Toujours generes en bas du fichier CHANGELOG :
