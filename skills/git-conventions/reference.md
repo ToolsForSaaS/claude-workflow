@@ -56,6 +56,8 @@ Ce sur quoi le reviewer doit porter son attention en priorite. Decisions techniq
 Ce qui a ete teste, comment. Si rien n'a ete teste, le dire explicitement avec la raison.
 ```
 
+**Important** : `Closes #XX` est obligatoire, pas optionnel. Toujours present avec le bon numero d'issue. Si plusieurs issues sont liees : `Closes #12, Closes #15`.
+
 ## Template PR — Commentaire d'iteration
 
 Utilise uniquement lors de la mise a jour d'une PR existante. Liste tous les commits depuis la derniere mise a jour.
