@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-04-11
+
 ### Added
 
 - Support JIRA et multi-plateforme dans `/pipe-plan` avec classification des issues et génération de plans plus concis ([#28](https://github.com/ToolsForSaaS/claude-workflow/pull/28))
@@ -123,7 +125,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Préfixage des skills par catégorie (`pipe-*`, `create-*`, `setup-*`, `audit-*`) ([#8](https://github.com/ToolsForSaaS/claude-workflow/pull/8))
 - Installation via marketplace ([`951edeb`](https://github.com/ToolsForSaaS/claude-workflow/commit/951edeb))
 
-[Unreleased]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.4.1...HEAD
+[1.4.1]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.3...v1.4.0
 [1.3.3]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.1...v1.3.2
