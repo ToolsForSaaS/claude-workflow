@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Skill `/worktree` pour créer, lister, supprimer et basculer entre des worktrees git (`create`, `list`, `remove`, `switch`) avec intégration de l'outil natif `EnterWorktree` ([`fb2cce4`](https://github.com/ToolsForSaaS/claude-workflow/commit/fb2cce4))
 
+### Removed
+
+- Skill `pipe-notifier` supprimé : jugé inutile, le pipeline se termine désormais à `/pipe-tag` ([#21](https://github.com/ToolsForSaaS/claude-workflow/pull/21))
+
 ## [1.4.1] - 2026-04-11
 
 ### Added

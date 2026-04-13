@@ -108,12 +108,12 @@ Si omis : pas de recommandation (le modele de la session est utilise).
 | `sonnet` | Taches structurees, reviews, generation de texte formate, configuration, audits | `pipe-review`, `pipe-pr`, `pipe-changelog`, `pipe-test`, `setup`, `audit-*` |
 | `haiku` | Affichage simple, formatage, reference pure | `pipe-hello`, `*-conventions` |
 
-### Grille de categorisation (22 skills)
+### Grille de categorisation (21 skills)
 
 | Tier | Skills |
 |------|--------|
 | `opus` | `pipe-code`, `pipe-plan`, `create-issue`, `create-skill` |
-| `sonnet` | `pipe-review`, `pipe-pr`, `pipe-changelog`, `pipe-test`, `pipe-commit`, `pipe-tag`, `setup`, `setup-templates`, `setup-ui-ux`, `setup-mcp`, `audit-skills`, `audit-lint`, `audit-naming` |
+| `sonnet` | `pipe-review`, `pipe-pr`, `pipe-changelog`, `pipe-test`, `pipe-commit`, `pipe-tag`, `worktree`, `setup`, `setup-templates`, `setup-ui-ux`, `setup-mcp`, `audit-skills`, `audit-lint`, `audit-naming` |
 | `haiku` | `pipe-hello`, `git-conventions`, `frontend-code-conventions`, `_workflow-persona` |
 
 ---
