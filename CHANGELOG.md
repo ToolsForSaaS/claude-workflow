@@ -52,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Intégration de `/pipe-tag` dans le pipeline entre `/pipe-pr` et `/pipe-notifier` ([#20](https://github.com/ToolsForSaaS/claude-workflow/pull/20))
+- Intégration de `/pipe-tag` dans le pipeline après `/pipe-pr` ([#20](https://github.com/ToolsForSaaS/claude-workflow/pull/20))
 
 ## [1.3.1] - 2026-03-29
 
@@ -117,7 +117,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Pipeline AI-Driven Development : `/pipe-hello` → `/pipe-plan` → `/pipe-code` → `/pipe-review` → `/pipe-test` → `/pipe-pr` → `/pipe-notifier` ([`60bcaba`](https://github.com/ToolsForSaaS/claude-workflow/commit/60bcaba))
+- Pipeline AI-Driven Development : `/pipe-hello` → `/pipe-plan` → `/pipe-code` → `/pipe-review` → `/pipe-test` → `/pipe-pr` ([`60bcaba`](https://github.com/ToolsForSaaS/claude-workflow/commit/60bcaba))
 - Skill `/setup` pour configurer un projet complet ([#9](https://github.com/ToolsForSaaS/claude-workflow/pull/9))
 - Skill `/setup-mcp` pour configurer les serveurs MCP avec catalogue de référence ([#2](https://github.com/ToolsForSaaS/claude-workflow/pull/2))
 - Skill `/setup-templates` pour initialiser les templates projet-spécifiques ([`9f156fd`](https://github.com/ToolsForSaaS/claude-workflow/commit/9f156fd))
