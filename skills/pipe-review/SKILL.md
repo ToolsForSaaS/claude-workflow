@@ -107,13 +107,72 @@ Affiche le rapport du sub-agent dans ce format :
 
 Si aucun probleme dans une categorie, ne pas afficher la section (pas de liste vide).
 
-## Etape 5 — Corrections et suite
+## Etape 5 — Synthese et revue interactive
 
-Selon le statut :
+### Phase 1 — Synthese rapide
 
-- **OK** → propose de lancer `/pipe-test`
-- **Avertissements** → propose de corriger les avertissements ou de passer a `/pipe-test` en l'etat
-- **Bloquant** → corrige les problemes bloquants, puis relance la review (max 2 iterations de correction)
+Apres l'affichage du rapport (etape 4), produis un recap condense :
+
+```
+### Synthese
+
+- X bloquant(s)
+- Y avertissement(s)
+- Z suggestion(s)
+
+**Bloquants**
+- `fichier.ts:42` — description courte
+- `fichier.ts:78` — description courte
+
+**Avertissements**
+- `fichier.ts:15` — description courte
+
+**Suggestions**
+- `fichier.ts:8` — description courte
+```
+
+Ne rien corriger a ce stade.
+
+Si aucune categorie n'a de problemes, ne pas l'afficher (pas de liste vide).
+
+**Si statut OK** (aucun probleme) → propose directement `/pipe-test`. Fin du skill.
+
+**Si des problemes sont trouves** → demande a l'utilisateur :
+
+```
+Tu veux passer en revue les problemes un par un ? (oui / non — si non, on passe directement a `/pipe-test`)
+```
+
+Si l'utilisateur decline, propose `/pipe-test` et termine.
+
+### Phase 2 — Revue interactive
+
+Parcours chaque probleme dans l'ordre de severite (bloquants d'abord, puis avertissements, puis suggestions).
+
+Pour chaque probleme :
+
+1. **Explique en detail** : contexte, impact, code concerne (lis le fichier via Read si necessaire pour montrer le code en question)
+2. **Propose la correction concrete** telle que decrite dans le rapport du sub-agent
+3. **Attends la decision de l'utilisateur** :
+   - **corriger** → applique la correction proposee
+   - **adapter** → demande la modification souhaitee a l'utilisateur, puis applique
+   - **ignorer** → passe au probleme suivant sans rien modifier
+
+Ne jamais corriger automatiquement sans validation explicite de l'utilisateur.
+
+### Cloture
+
+Apres le dernier probleme (ou si l'utilisateur a decline la revue), affiche un recap des actions :
+
+```
+### Recap review interactive
+
+- X probleme(s) corrige(s)
+- Y probleme(s) ignore(s)
+- Z probleme(s) adapte(s)
+```
+
+Puis propose la suite :
 
 ```
 ---
