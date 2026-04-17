@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `/pipe-changelog` genere et maintient desormais **deux fichiers** : `CHANGELOG.md` (orienté consommateur) et `TECHNICAL_CHANGES.md` (orienté contributeur, pour les changements techniques internes — refactors, docs internes, tests, CI, dependances, chore). Chaque commit est classe automatiquement dans un seul des deux fichiers selon son prefixe
+
 ## [1.4.4] - 2026-04-17
 
 ### Added
