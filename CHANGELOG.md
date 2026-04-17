@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.4] - 2026-04-17
+
 ### Added
 
 - `/pipe-changelog` ajoute une étape 2.5 d'audit de cohérence historique : détecte les entrées dont la PR/commit a été mergé après la date du tag de leur section et propose de les déplacer vers `[Unreleased]` ([`96cc25b`](https://github.com/ToolsForSaaS/claude-workflow/commit/96cc25b))
