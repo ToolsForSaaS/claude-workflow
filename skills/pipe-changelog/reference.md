@@ -83,7 +83,10 @@ Une entree de CHANGELOG parle au lecteur qui consomme le projet (dev qui appelle
 
 1. **Exposer l'effet observable** — codes HTTP, parametres accessibles, exigences cote client, comportement visible. Pas les noms de fonctions internes, decorateurs, hooks, ou refactors qui ne changent rien a l'usage.
 2. **Expliciter les valeurs concretes** — remplacer les formulations vagues par les contraintes reelles. "politique renforcee" → "minimum 12 caracteres avec majuscule, chiffre et symbole". "nouveau filtre" → "filtre `category_id` sur `GET /api/recipes`".
-3. **Fusionner les entrees liees** — plusieurs commits/PRs qui decrivent un **meme changement user-facing** (ex: ajout du cookie HttpOnly + marquage BREAKING + CORS credentials) deviennent une seule entree. Cote lecteur, c'est un seul evenement.
+3. **Fusionner les entrees liees, mais decouper les aspects distincts** — la fusion ne s'applique qu'aux commits/PRs qui decrivent **le meme evenement vu du consommateur** :
+   - ✅ **Fusion OK** : ajout du cookie HttpOnly + marquage BREAKING + CORS credentials → un seul evenement auth, donc une seule entree.
+   - ❌ **Fusion abusive** : nouveau champ obligatoire + nouveau filtre + nouvel endpoint + inclusion dans un GET → ce sont autant d'informations user-facing distinctes, chacune doit etre sa propre entree.
+   La regle : si le lecteur peut consommer un aspect sans connaitre les autres, c'est qu'il merite sa propre ligne.
 4. **Indiquer l'impact client quand il existe** — si le consommateur doit adapter son code (headers, options fetch, configuration), le dire explicitement dans l'entree.
 
 ### Avant / apres
