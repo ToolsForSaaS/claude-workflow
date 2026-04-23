@@ -7,13 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.6] - 2026-04-23
+
 ### Refactor
 
-- Restructurer le skill `pipe-review` : le sub-agent produit 6 champs structures par probleme (fichier, severite, probleme_une_phrase, gravite_impact, cause, correction) et la phase 2 affiche chaque probleme en format Question/Reponse pedagogique avec exemple de rendu ([`c32e199`](https://github.com/ToolsForSaaS/claude-workflow/commit/c32e199))
+- Restructurer le skill `pipe-review` : le sub-agent produit 6 champs structurés par problème (fichier, sévérité, problème_une_phrase, gravité_impact, cause, correction) et la phase 2 affiche chaque problème en format Question/Réponse pédagogique avec exemple de rendu ([#42](https://github.com/ToolsForSaaS/claude-workflow/pull/42))
 
 ### Docs
 
-- Clarifier la convention de granularite dans `pipe-changelog` : une entree = une seule information user-facing distincte, principe #3 reformule pour distinguer fusion et decoupage, exemples Avant/Apres ajoutes ([`96b6a36`](https://github.com/ToolsForSaaS/claude-workflow/commit/96b6a36))
+- Clarifier la convention de granularité dans `pipe-changelog` : une entrée = une seule information user-facing distincte, principe #3 reformulé pour distinguer fusion et découpages, exemples Avant/Après ajoutés ([#43](https://github.com/ToolsForSaaS/claude-workflow/pull/43))
 
 ## [1.4.2](https://github.com/ToolsForSaaS/claude-workflow/releases/tag/v1.4.2) - 2026-04-14
 
@@ -101,7 +103,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renommer le plugin et ajouter `.gitignore` ([`3f0423a`](https://github.com/ToolsForSaaS/claude-workflow/commit/3f0423a))
 - Supprimer le tableau de routage des skills et le template d'index devenus obsoletes ([`88ef12c`](https://github.com/ToolsForSaaS/claude-workflow/commit/88ef12c))
 
-[Unreleased]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.4.5...HEAD
+[Unreleased]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.4.6...HEAD
+[1.4.6]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.4.5...v1.4.6
 [1.4.2]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.4.1...v1.4.2
 [1.4.1]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/ToolsForSaaS/claude-workflow/compare/v1.3.3...v1.4.0
