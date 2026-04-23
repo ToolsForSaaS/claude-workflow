@@ -96,16 +96,16 @@ Affiche le rapport du sub-agent dans ce format :
 ### Statut : OK / Avertissements / Bloquant
 
 ### Problemes bloquants (a corriger avant de continuer)
-- `fichier.ts:42` description du probleme
-  → Correction proposee
+- `fichier.ts:42` <probleme_une_phrase>
+  → <correction>
 
 ### Avertissements
-- `fichier.ts:15` description
-  → Suggestion
+- `fichier.ts:15` <probleme_une_phrase>
+  → <correction>
 
 ### Suggestions
-- `fichier.ts:8` description
-  → Suggestion
+- `fichier.ts:8` <probleme_une_phrase>
+  → <correction>
 ```
 
 Si aucun probleme dans une categorie, ne pas afficher la section (pas de liste vide).
