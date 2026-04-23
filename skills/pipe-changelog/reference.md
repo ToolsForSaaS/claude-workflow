@@ -105,6 +105,18 @@ Une entree de CHANGELOG parle au lecteur qui consomme le projet (dev qui appelle
 ✅ Politique de mot de passe renforcee a l'inscription : minimum 12 caracteres avec au moins une majuscule, un chiffre et un symbole
 ```
 
+#### Decoupage : plusieurs aspects user-facing distincts
+
+```
+❌ Ajout du champ `type` obligatoire sur POST, nouveau filtre `?type=` sur GET, nouvel endpoint `PATCH /pricing` et inclusion de `pricing` dans `GET /:id` (1 entree fourre-tout)
+
+✅ 4 entrees distinctes :
+   - **BREAKING** — `POST /recipes` : le champ `type` est desormais obligatoire (`'base'` ou `'composed'`)
+   - Nouveau filtre `?type=base|composed` sur `GET /recipes`
+   - `GET /recipes/:id` inclut un objet `pricing` quand les informations tarifaires sont renseignees
+   - Nouvel endpoint `PATCH /recipes/:id/pricing` (admin) pour creer ou mettre a jour le pricing
+```
+
 ### Heuristique rapide
 
 Si l'entree reformulee ne permet **pas** a un consommateur de repondre a l'une de ces questions, elle manque probablement de contenu :
