@@ -68,7 +68,7 @@ Cas speciaux CHANGELOG (detectes par le contenu du commit, pas par le prefixe se
 
 ## Regles de contenu
 
-- Une entree = un changement notable cote utilisateur/consommateur
+- Une entree = **une seule information user-facing distincte**. Si un changement couvre plusieurs aspects distincts (nouveau champ + nouveau filtre + nouvel endpoint), decouper en autant d'entrees separees plutot que de tout fusionner sur une ligne.
 - Redigee pour le lecteur, pas pour le dev — pas de detail d'implementation interne
 - Chaque entree tient sur **une seule ligne** — pas de retour a la ligne manuel au milieu d'une phrase. Les editeurs gerent le wrap, pas l'auteur.
 - Chaque entree inclut ses references tracables en fin de ligne (voir section "References dans les entrees")
