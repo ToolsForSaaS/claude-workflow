@@ -66,11 +66,14 @@ Pour chaque fichier, cherche activement :
 - `any` injustifie, assertions forcees (`as`, `!`) sans garde
 - Props/parametres mal types, retours inconsistants
 
-Pour chaque probleme, donne :
-- Fichier et ligne
-- Severite : BLOQUANT (bug, faille, regression) / AVERTISSEMENT (dette significative) / SUGGESTION (lisibilite, robustesse)
-- Description en 1-2 phrases centree sur l'impact
-- Correction proposee
+Pour chaque probleme, produis ces 6 champs structures (utilises ensuite par la phase 2 du skill pour la revue interactive) :
+
+- **fichier** : chemin et ligne (ex: `src/services/user.service.ts:42`)
+- **severite** : BLOQUANT (bug, faille, regression) / AVERTISSEMENT (dette significative) / SUGGESTION (lisibilite, robustesse)
+- **probleme_une_phrase** : description courte du probleme, sans jargon. Doit etre comprehensible meme sans contexte technique
+- **gravite_impact** : consequence concrete pour l'utilisateur final, le code ou la donnee, avec une notion de frequence ou de risque (ex: "1 chargement sur 10 affiche les anciennes infos pendant 2 secondes" plutot que "violation du principe de coherence")
+- **cause** : cause technique en restant comprehensible — explique l'origine sans noyer le lecteur
+- **correction** : correction courte et actionnable, idealement avec un avant/apres tres bref
 
 **Ce que tu ne fais PAS :**
 - Pas de commentaire sur le style ou le formatting (c'est le role de Biome/ESLint)
@@ -78,7 +81,7 @@ Pour chaque probleme, donne :
 - Pas de compliments generiques
 - Pas de rapport exhaustif de tous les changements
 
-**Style** : ecris comme si tu parlais a un developpeur competent. Une phrase pour le probleme, une pour la correction — pas plus. L'impact doit etre immediatement comprehensible (ex: "ca peut crasher si X est null" plutot que "violation du principe de null-safety").
+**Style** : pour chacun des 6 champs, ecris comme si tu expliquais a un developpeur competent qui n'a pas tout le contexte en tete. L'impact doit etre exprime en termes concrets (consequence visible) et non en vocabulaire technique abstrait : preferer "ca peut crasher si X est null" a "violation du principe de null-safety". Une phrase par champ suffit.
 
 Produis un rapport structure avec statut global : OK, AVERTISSEMENTS, ou BLOQUANT.
 ```
@@ -93,16 +96,16 @@ Affiche le rapport du sub-agent dans ce format :
 ### Statut : OK / Avertissements / Bloquant
 
 ### Problemes bloquants (a corriger avant de continuer)
-- `fichier.ts:42` description du probleme
-  → Correction proposee
+- `fichier.ts:42` <probleme_une_phrase>
+  → <correction>
 
 ### Avertissements
-- `fichier.ts:15` description
-  → Suggestion
+- `fichier.ts:15` <probleme_une_phrase>
+  → <correction>
 
 ### Suggestions
-- `fichier.ts:8` description
-  → Suggestion
+- `fichier.ts:8` <probleme_une_phrase>
+  → <correction>
 ```
 
 Si aucun probleme dans une categorie, ne pas afficher la section (pas de liste vide).
@@ -137,16 +140,59 @@ Si l'utilisateur decline, propose `/pipe-test` et termine.
 
 Parcours chaque probleme dans l'ordre de severite (bloquants d'abord, puis avertissements, puis suggestions).
 
-Pour chaque probleme :
+`N/Total` = position du probleme dans la liste globale triee par severite, sur le nombre total de problemes toutes severites confondues (ex: si 2 bloquants + 1 suggestion, le premier bloquant est `1/3`, la suggestion est `3/3`).
 
-1. **Explique en detail** : contexte, impact, code concerne (lis le fichier via Read pour montrer le code exact)
-2. **Propose la correction concrete** telle que decrite dans le rapport du sub-agent
-3. **Attends la decision de l'utilisateur** :
-   - **corriger** → relis d'abord le fichier via Read (les corrections precedentes ont pu modifier les lignes), puis applique la correction
-   - **adapter** → demande la modification souhaitee a l'utilisateur, relis le fichier via Read, puis applique
-   - **ignorer** → passe au probleme suivant sans rien modifier
+Pour chaque probleme, **affiche-le dans le format Question/Reponse pedagogique suivant**, en te basant sur les 6 champs produits par le sub-agent a l'etape 3.
+
+```
+[Severite N/Total] — <fichier>:<ligne>
+
+❓ Le probleme en une phrase
+   <probleme_une_phrase>
+
+❓ C'est grave ?
+   <gravite_impact>
+
+❓ D'ou ca vient ?
+   <cause>
+   [extrait de code pertinent si necessaire]
+
+❓ Comment on corrige ?
+   <correction>
+
+→ corriger / adapter / ignorer ?
+```
+
+Puis **attends la decision de l'utilisateur** :
+
+- **corriger** → relis d'abord le fichier via Read (les corrections precedentes ont pu modifier les lignes), puis applique la correction
+- **adapter** → demande la modification souhaitee a l'utilisateur, relis le fichier via Read, puis applique
+- **ignorer** → passe au probleme suivant sans rien modifier
 
 Ne jamais corriger automatiquement sans validation explicite de l'utilisateur.
+
+#### Exemple de rendu
+
+```
+[Bloquant 1/3] — src/services/user.service.ts:42
+
+❓ Le probleme en une phrase
+   On notifie le client avant d'avoir fini d'enregistrer ses donnees.
+
+❓ C'est grave ?
+   Oui. Dans environ 1 cas sur 10, l'utilisateur verra l'ancienne
+   version de son profil juste apres l'avoir modifie.
+
+❓ D'ou ca vient ?
+   Un `await` oublie devant `saveCache(user)` : la notification
+   part immediatement, sans attendre la fin de l'ecriture en cache.
+
+❓ Comment on corrige ?
+   Ajouter `await` devant l'appel :
+   `await saveCache(user)` au lieu de `saveCache(user)`.
+
+→ corriger / adapter / ignorer ?
+```
 
 ### Cloture
 
