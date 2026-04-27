@@ -138,6 +138,35 @@ Exemple d'application :
    - Nouvel endpoint `PATCH /recipes/:id/pricing` (admin) pour creer ou mettre a jour le pricing
 ```
 
+### Consolider en etat final
+
+Quand plusieurs commits successifs touchent le **meme artefact** (fichier, endpoint, fonction publique, option de config, dependance...) **au sein de la meme release**, n'ecrire qu'une seule entree decrivant l'**etat final** du point de vue du consommateur. Les etats intermediaires n'ont jamais ete livres, ils ne doivent pas apparaitre.
+
+Cette regle s'applique aux **deux fichiers** : `CHANGELOG.md` et `TECHNICAL_CHANGES.md`. Le scope est la release en cours (`[Unreleased]` ou la section en preparation), jamais entre deux versions deja taggees.
+
+Cas typiques :
+
+- **Ajout puis suppression** dans la meme release → ne rien ecrire (l'artefact n'a jamais existe pour le consommateur)
+- **Ajout puis renommage/deplacement** dans la meme release → une seule entree avec le nom final
+- **Modification puis re-modification** successive → une seule entree decrivant le comportement final
+- **Ajout puis depreciation/breaking** dans la meme release → une seule entree decrivant l'etat final (et son impact)
+
+Distinction avec le principe #3 (fusion vs decoupage) : le principe #3 traite les **aspects distincts simultanes** (a decouper si independants). La consolidation traite les **succession sur le meme artefact** (a fusionner sur l'etat final). Les deux sont compatibles.
+
+#### Avant / apres
+
+```
+Commits de la PR : "Ajoute le fichier config/legacy.json" → "Renomme legacy.json en deprecated.json" → "Supprime deprecated.json"
+❌ 3 entrees (Added, Changed, Removed) — l'utilisateur lit l'historique d'un fichier qui n'a jamais existe pour lui
+✅ Aucune entree — le fichier n'a jamais ete livre
+
+Commits de la PR : "Ajoute l'endpoint POST /export" → "Renomme POST /export en POST /reports/export"
+❌ 2 entrees (Added /export, Changed → /reports/export)
+✅ 1 entree (Added) : Ajoute l'endpoint `POST /reports/export` pour declencher la generation d'un rapport
+```
+
+En cas de doute sur la detection d'une succession (chemin renomme, identifiant ambigu), demander confirmation a l'utilisateur plutot que de consolider silencieusement.
+
 ### Heuristique rapide
 
 Si l'entree reformulee ne permet **pas** a un consommateur de repondre a l'une de ces questions, elle manque probablement de contenu :
